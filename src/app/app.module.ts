@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -11,6 +11,8 @@ import { ArticleComponent } from './gabarits/article/article.component';
 import { Erreur404Component } from './structure/erreur404/erreur404.component';
 import { AccueilComponent } from './gabarits/accueil/accueil.component';
 import { ContactComponent } from './gabarits/contact/contact.component';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,10 @@ import { ContactComponent } from './gabarits/contact/contact.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormlyModule.forRoot({ extras: { lazyRender: true } }),
+    FormlyMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
