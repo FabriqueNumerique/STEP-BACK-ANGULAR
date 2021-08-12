@@ -1,0 +1,7 @@
+{
+    "principal":[
+        {"titre":"Accueil", "route":{"path":"", "component":"AccueilComponent", "data":{"source":"accueil", "service":"DataService"}}},
+        {"titre":"Article", "route":{"path":"article", "component":"ArticleComponent", "data":{"source":"article", "service":"DataService"}}},
+        {"titre":"Blog", "route":{"path":"blog", "component":"BlogComponent", "data":{"source":"accueil", "service":"DataService"}}}
+    ]
+}

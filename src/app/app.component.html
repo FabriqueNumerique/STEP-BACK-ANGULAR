@@ -1,0 +1,17 @@
+<main>
+  <header>
+    <nav>
+      <ul>
+        <li *ngFor="let l of menuServ.menus.principal">
+          <a href [routerLink]="l.route.path"> {{ l.titre }}</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+  <footer>
+
+  </footer>
+</main>
