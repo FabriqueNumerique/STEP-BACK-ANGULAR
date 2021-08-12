@@ -25,7 +25,7 @@ export class MenusService {
     this.http.get<any>('assets/mock/menus.json').subscribe(menus => {
       this.menus = menus;
       console.log(this.menus.principal, this.routes);
-      this.menus.principal.forEach(m => {
+      this.menus.principal.forEach( (m:any) => {
         // this.routes.push(m.route);
         this.router.config.push(this.setRoutes(m.route));
         this.routes = this.router.config;
