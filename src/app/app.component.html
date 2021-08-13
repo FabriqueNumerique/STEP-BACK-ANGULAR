@@ -1,20 +1,15 @@
 <main>
   <header>
-    <nav>
-      <ul>
-        <li *ngFor="let l of menuServ.menus.principal">
-          <a href [routerLink]="l.route.path"> {{ l.titre }}</a>
-        </li>
-      </ul>
-    </nav>
+    
   </header>
   <section>
     <aside>
       <nav>
         <ul>
-          <li>
-            <a href routerLink="/form"> Formulaire d'exemple </a>
+          <li *ngFor="let l of menuServ.menus.principal">
+            <a href [routerLink]="l.route.path"> {{ l.titre }}</a>
           </li>
+          <li><a href routerLink="/erreur">Fake</a></li>
         </ul>
       </nav>
     </aside>

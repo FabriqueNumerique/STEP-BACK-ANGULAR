@@ -11,7 +11,9 @@ import {FormlyFieldConfig} from '@ngx-formly/core';
 export class FormsComponent implements OnInit {
   // Modèle d'exemple pour la création d'un formulaire dynamique
   form = new FormGroup({});
+  
   model = { email: 'email@gmail.com' };
+
   fields: FormlyFieldConfig[] = [
     {
       key: 'email',
@@ -19,6 +21,15 @@ export class FormsComponent implements OnInit {
       templateOptions: {
         label: 'Email address',
         placeholder: 'Enter email',
+        required: true,
+      }
+    },
+    {
+      key: 'Nom',
+      type: 'input',
+      templateOptions: {
+        label: 'Nom',
+        placeholder: 'Saisissez votre nom',
         required: true,
       }
     }

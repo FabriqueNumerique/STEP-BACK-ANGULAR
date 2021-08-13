@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsComponent } from './admin/forms/forms.component';
+import { Erreur404Component } from './structure/erreur404/erreur404.component';
 
 const routes: Routes = [
-  {path:"form", component:FormsComponent}
+  {path:"**", component:Erreur404Component}
 ];
 
 @NgModule({
