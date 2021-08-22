@@ -16,6 +16,21 @@ import { ContactComponent } from './gabarits/contact/contact.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FormsComponent } from './admin/forms/forms.component';
+import { MatIconModule } from "@angular/material/icon";
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
+import {MatInputModule} from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { ModelComponent } from './admin/model/model.component';
+import { UserComponent } from './admin/user/user.component';
+import { SideNavComponent } from './admin/side-nav/side-nav.component';
+import { CategoryComponent } from './gabarits/category/category.component';
+import { TagComponent } from './gabarits/tag/tag.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +40,13 @@ import { FormsComponent } from './admin/forms/forms.component';
     Erreur404Component,
     AccueilComponent,
     ContactComponent,
-    FormsComponent
+    FormsComponent,
+    ModelComponent,
+    UserComponent,
+    SideNavComponent,
+    CategoryComponent,
+    TagComponent
+
   ],
   imports: [
     BrowserModule,
@@ -35,7 +56,15 @@ import { FormsComponent } from './admin/forms/forms.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
-    FormlyMaterialModule
+    FormlyMaterialModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    FlexLayoutModule,
+    MatInputModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

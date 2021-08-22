@@ -1,0 +1,38 @@
+<div class="row w-100 body-sideNav">
+    <div class="side-left" >
+        <div class="left-logo-button">
+            <img src="assets/logo_white.png" width="150px" alt="">		
+            <mat-divider></mat-divider>
+            <div class="d-flex align-items-center">
+                <mat-icon class="left-icon">person</mat-icon>
+                <a routerLink="user">User</a>
+            </div>
+
+            <div class="d-flex align-items-center"> 
+                <mat-icon class="left-icon">construction</mat-icon>
+                <a routerLink="model">Générateur de contenu</a>
+            </div>
+            
+            <div class="d-flex align-items-center">
+                <mat-icon class="left-icon">help</mat-icon>
+                <a routerLink="user">Aide</a>
+            </div>
+            <div class="d-flex align-items-center">
+                <mat-icon class="left-icon">settings</mat-icon>
+                <a routerLink="user">Paramétre</a>
+            </div>
+        </div>
+    </div>
+    <div class="content p-2">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="side-right" >
+        <div class="right-logo-button">
+            <img src="assets/logo_white.png" width="150px" alt="">		
+            <mat-divider></mat-divider>
+            <div class="d-flex align-items-center" *ngFor="let model of modelService.models">
+                <a routerLink={{model.title}}>{{model.title | titlecase}}</a>
+            </div>
+        </div>
+    </div>
+</div>
