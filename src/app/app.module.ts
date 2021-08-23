@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +36,8 @@ import { TagComponent } from './gabarits/tag/tag.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -73,6 +76,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTooltipModule,
     MatFormFieldModule,
     FormlyBootstrapModule,
+    AccordionModule.forRoot(),
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

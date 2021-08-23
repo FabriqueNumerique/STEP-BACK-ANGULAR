@@ -1,58 +1,83 @@
-<div [class.mat-elevation-z5]="fields" class="elevation" >
-    <h2>Structure de l'article</h2>
-    <div class="row">
-        <div class="col"><h3>Nom du champ</h3></div>
-        <div class="col"><h3>Type</h3></div>
-        <div class="col"><h3>Requis</h3></div>
-        <div class="col"><h3>Actions</h3></div>
-        <mat-divider><mat-icon>more_vert</mat-icon></mat-divider>
-    </div>
-    <div class="row" *ngFor="let field of fields">
-        <div class="col"><h3>{{field.templateOptions.label}}</h3></div>
-        <div class="col"><h3>{{field.templateOptions.type}}</h3></div>
-        <div class="col"><h3>{{field.templateOptions.required}}</h3></div>
-        <div class="col">
-            <button mat-icon-button >
-                <mat-icon color="accent" matTooltip="supprimer">delete</mat-icon>
+<div *ngIf="fields" style="margin:5%;">
+    <mat-accordion >
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h1>Structure du composant</h1>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+                <div class="col"><h3>Nom du champ</h3></div>
+                <div class="col"><h3>Type</h3></div>
+                <div class="col"><h3>Requis</h3></div>
+                <div class="col"><h3>Actions</h3></div>
+                <mat-divider><mat-icon>more_vert</mat-icon></mat-divider>
+            </div>
+            <div class="row" *ngFor="let field of fields">
+                <div class="col"><h3>{{field.templateOptions.label}}</h3></div>
+                <div class="col"><h3>{{field.templateOptions.type}}</h3></div>
+                <div class="col"><h3>{{field.templateOptions.required}}</h3></div>
+                <div class="col">
+                    <button mat-icon-button >
+                        <mat-icon color="accent" matTooltip="supprimer">delete</mat-icon>
+                    </button>
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+            <button mat-icon-button (click)="addField()">
+                <mat-icon color="primary" matTooltip="ajouter un champ">add</mat-icon>
             </button>
-        </div>
-        <mat-divider></mat-divider>
-    </div>
-    <button mat-icon-button (click)="addField()">
-        <mat-icon color="primary" matTooltip="ajouter un champ">add</mat-icon>
-    </button>
-    <div *ngIf="isAddClicked" class="row d-flex align-items-center flex-wrap">
-        <div class="col">
-            <input type="text" placeholder="Nom du champ" class="form-control" [(ngModel)]="field_name">
-        </div>
-        <div class="col">
-            <select name="" id="" class="form-select" [(ngModel)]="field_type">
-                <option selected disabled>Type du champ</option>
-                <option value="text">Text</option>
-                <option value="email">Email</option>
-                <option value="date">Date</option>
-                <option value="number">Number</option>
-                <option value="boolean">Boolean</option>
-                <option value="file">File</option>
-                <option value="textarea">Textarea</option>
-            </select>
-        </div>
-        <div class="col">
-            <input class="form-check-input m-1" [(ngModel)]="isChecked" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label m-1" for="flexCheckDefault">
-                Champ Requis
-            </label>
-        </div>
-        <div class="col">
-            <button (click)="saveField()" mat-button class="success" [disabled]="field_type ==='' || field_name ===''">
-                Enregistrer
-            </button>
-        </div>
-    </div>
-   
+            <div *ngIf="isAddClicked" class="row d-flex align-items-center flex-wrap">
+                <div class="col">
+                    <input type="text" placeholder="Nom du champ" class="form-control" [(ngModel)]="field_name">
+                </div>
+                <div class="col">
+                    <select name="" id="" class="form-select" [(ngModel)]="field_type">
+                        <option selected disabled>Type du champ</option>
+                        <option value="text">Text</option>
+                        <option value="email">Email</option>
+                        <option value="date">Date</option>
+                        <option value="number">Number</option>
+                        <option value="boolean">Boolean</option>
+                        <option value="file">File</option>
+                        <option value="textarea">Textarea</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <input class="form-check-input m-1" [(ngModel)]="isChecked" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label m-1" for="flexCheckDefault">
+                        Champ Requis
+                    </label>
+                </div>
+                <div class="col">
+                    <button (click)="saveField()" mat-button class="success" [disabled]="field_type ==='' || field_name ===''">
+                        Enregistrer
+                    </button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<div *ngIf="fields" style="margin:5%;">
+    <mat-accordion >
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h1>Liste des articles</h1>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div>Content</div>
+
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
 
 <div [class.mat-elevation-z5]="fields" class="elevation">
+    <h1>Ajouter un article</h1>
     <form [formGroup]="form" (ngSubmit)="submit()">
         <formly-form [model]="model" [fields]="fields" [form]="form" ></formly-form>
         <button  mat-raised-button

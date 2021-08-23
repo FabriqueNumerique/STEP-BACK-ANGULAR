@@ -10,6 +10,7 @@ import { ModelService } from 'src/app/system/services/model.service';
 	styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
+	panelOpenState = false;
 	form = new FormGroup({});
 	model: any = {};
 	fields: any = []

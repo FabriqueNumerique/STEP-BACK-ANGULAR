@@ -14,6 +14,7 @@ import { field } from 'src/app/system/interfaces/field';
   styleUrls: ['./model.component.css']
 })
 export class ModelComponent implements OnInit {
+	panelOpenState = false;
 	hideRequiredControl = new FormControl(false);
 	isAdd:boolean=true
 	isChecked:boolean=true

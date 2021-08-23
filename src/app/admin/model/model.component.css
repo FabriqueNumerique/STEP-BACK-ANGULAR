@@ -27,10 +27,6 @@ mat-form-field{
     position: relative;
 }
 
-body{
-    padding: 5%;
-   
-}
 
 h2,h1{
     font-weight: bolder;
@@ -42,6 +38,9 @@ h2,h1{
     right: 2%;
 }
 
+.btn-link{
+    font-size: 30px !important;
+}
 
 
 
