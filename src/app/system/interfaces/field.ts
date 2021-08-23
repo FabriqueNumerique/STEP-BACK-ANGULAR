@@ -5,7 +5,7 @@ export interface field {
 		label: string,
 		placeholder: string,
 		required: boolean,
-		type: string,
+		type?: string,
 		rows?: number				
 	}
 }

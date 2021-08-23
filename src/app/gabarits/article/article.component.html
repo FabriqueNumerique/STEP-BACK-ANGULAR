@@ -12,14 +12,14 @@
         <div class="col"><h3>{{field.templateOptions.type}}</h3></div>
         <div class="col"><h3>{{field.templateOptions.required}}</h3></div>
         <div class="col">
-            <button mat-icon-button matTooltip="supprimer">
-                <mat-icon color="accent">delete</mat-icon>
+            <button mat-icon-button >
+                <mat-icon color="accent" matTooltip="supprimer">delete</mat-icon>
             </button>
         </div>
         <mat-divider></mat-divider>
     </div>
-    <button mat-icon-button matTooltip="ajouter un champ" (click)="addField()">
-        <mat-icon color="primary">add</mat-icon>
+    <button mat-icon-button (click)="addField()">
+        <mat-icon color="primary" matTooltip="ajouter un champ">add</mat-icon>
     </button>
     <div *ngIf="isAddClicked" class="row d-flex align-items-center flex-wrap">
         <div class="col">
@@ -44,7 +44,7 @@
             </label>
         </div>
         <div class="col">
-            <button mat-button class="success" [disabled]="field_type ==='' || field_name ===''">
+            <button (click)="saveField()" mat-button class="success" [disabled]="field_type ==='' || field_name ===''">
                 Enregistrer
             </button>
         </div>
@@ -52,11 +52,15 @@
    
 </div>
 
-
 <div [class.mat-elevation-z5]="fields" class="elevation">
     <form [formGroup]="form" (ngSubmit)="submit()">
-        <formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
-        <button  mat-raised-button color="primary" [disabled]="!form.valid">Enregistrer</button>
+        <formly-form [model]="model" [fields]="fields" [form]="form" ></formly-form>
+        <button  mat-raised-button
+            color="primary" 
+            style="margin-top:20px"
+            [disabled]="!form.valid">
+            Enregistrer
+        </button>
     </form>
 </div>
   

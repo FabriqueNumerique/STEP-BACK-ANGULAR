@@ -27,7 +27,6 @@ export interface route {
 export class MenusService {
 
 	menus : any = []
-	// routes: any = [];
 	routes:route[] = []
 
 	constructor(private http: HttpClient, private router: Router) {
@@ -38,7 +37,7 @@ export class MenusService {
 	getRoutes(){
 		this.http.get(`${environment.url}/get-routes`).subscribe((res:any)=>{
 			this.routes = res
-			console.log(this.router.config);
+			console.log("les routes existants: ",this.router.config);
 			const tmp = this.router.config.pop();
 			this.routes.map((route:any) => {
 				this.router.config.push(this.setRoutes(route.route))

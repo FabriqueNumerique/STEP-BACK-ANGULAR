@@ -13,8 +13,10 @@ import { Erreur404Component } from './structure/erreur404/erreur404.component';
 import { AccueilComponent } from './gabarits/accueil/accueil.component';
 import { ContactComponent } from './gabarits/contact/contact.component';
 
+// import { FormlyMaterialModule } from '@ngx-formly/material';
+// import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyModule } from '@ngx-formly/core';
-import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FormsComponent } from './admin/forms/forms.component';
 import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -31,6 +33,8 @@ import { SideNavComponent } from './admin/side-nav/side-nav.component';
 import { CategoryComponent } from './gabarits/category/category.component';
 import { TagComponent } from './gabarits/tag/tag.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 @NgModule({
@@ -57,7 +61,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     HttpClientModule,
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
-    FormlyMaterialModule,
+    // FormlyMaterialModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
@@ -66,7 +70,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     FlexLayoutModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule,
+    FormlyBootstrapModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

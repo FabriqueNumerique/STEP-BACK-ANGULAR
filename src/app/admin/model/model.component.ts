@@ -24,7 +24,9 @@ export class ModelComponent implements OnInit {
 	fields:field[]=[]
 	name_component:string=""
 	name_field:string=""
-	typeField:string=""
+	field_type:string=""
+	input_type:string=""
+	rows:number = 0
 	models :any = []
 	options = ['article','category','tag']
 
@@ -37,103 +39,44 @@ export class ModelComponent implements OnInit {
 	ngOnInit(): void {
 		console.log(uuid())	
 		this.onSelect()
+		this.models = this.modelService.models
+		console.log("models existants ", this.models )
 	}
 
 	onSelect(){
+		let models:any = []
 		console.log(this.modelService.models);
 		this.modelService.models.map(model => {
-			this.models.push(model.title)
-			console.log(this.models)
-			this.options = this.options.filter(e => !this.models.includes(e))
+			models.push(model.title)
+			console.log("models ",models)
+			this.options = this.options.filter(e => !models.includes(e))
 		})
 	}
 
-  	generateInput(event:any){
-		this.typeField = event
+  	generateInput(input_type:string,field_type:string){
+		this.input_type = input_type
+		this.field_type = field_type
+		if (input_type === "textarea") this.rows = 10
  	}
 
 	addField(){
-		switch (this.typeField) {
-			case "text":
-			this.fields.push({
-				key: 'text',
-				type: 'input',
-				templateOptions: {
-					label: this.name_field,
-					placeholder: 'Placeholder',
-					required: this.isChecked,
-					type:'text'				
-				}
-			})
-			break;
-			case "email":
-			this.fields.push({
-				key: 'email',
-				type: 'input',
-				templateOptions: {
-					label: this.name_field,
-					placeholder: 'Placeholder',
-					required: this.isChecked,
-					type:'email'				
-				}
-			})
-			break;
-			case "number":
-			this.fields.push({
-				key: 'number',
-				type: 'input',
-				templateOptions: {
-					label: this.name_field,
-					placeholder: 'Placeholder',
-					required: this.isChecked,
-					type:'number'				
-				}
-			})
-			break;
-			case "date":
-			this.fields.push({
-				key: 'date',
-				type: 'input',
-				templateOptions: {
-					label: this.name_field,
-					placeholder: 'Placeholder',
-					required: this.isChecked,
-					type:'date'				
-				}
-			})
-			break;
-			case "file":
-			this.fields.push({
-				key: 'file',
-				type: 'input',
-				templateOptions: {
-					label: this.name_field,
-					placeholder: 'Placeholder',
-					required: this.isChecked,
-					type:'file'				
-				}
-			})
-			break;
-
-			case "textarea":
-			this.fields.push({
-				key: 'textarea',
-				type: 'textarea',
-				templateOptions: {
-					label: this.name_field,
-					placeholder: 'Placeholder',
-					required: this.isChecked,
-				  	rows: 10,
-					type:'textarea'
-				}
-			  })
-			
-		}
-		console.log(this.fields)
+		this.fields.push({
+			key: this.name_field,
+			type: this.input_type,
+			templateOptions: {
+				label: this.name_field,
+				placeholder: this.name_field,
+				required: this.isChecked,
+				type:this.field_type,
+				rows: this.rows,				
+			}
+		})
+		
+		console.log("fields array is ",this.fields)
 		this.isValidate = true
 		this.isSelected = false
 		this.name_field=""
-		this.typeField=""
+		this.field_type=""
 	}
 
 	saveModel(){
@@ -160,6 +103,8 @@ export class ModelComponent implements OnInit {
 			this.name_component=""
 		})
 		this.isSelected = true
+		this.isValidate = false
+		this.fields = []
 	}
 
 	
@@ -171,13 +116,15 @@ export class ModelComponent implements OnInit {
 	deleteChamp(index:number){
 		console.log(index);
 		this.fields.splice(index, 1);
-		
+		console.log(this.fields.length)
 	}
 
 	cancel(){
 		this.isSelected = true
 		this.isValidate = false
 		this.name_component=""
+		this.name_field=""
+		this.field_type=""
 		this.fields=[]
 	}
 

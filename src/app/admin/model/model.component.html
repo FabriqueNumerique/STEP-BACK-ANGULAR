@@ -1,34 +1,67 @@
+
+<div *ngIf="models.length != 0" [class.mat-elevation-z5]="models.length != 0" class="col dialogue">
+    <h1>Liste of composants</h1>
+    
+    <div class="row">
+        <div class="col"><h3>Name</h3></div>
+        <div class="col"><h3>Actions</h3></div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row" *ngFor="let model of models, let i=index">
+        <div class="col"><h3>{{model.title}}</h3></div>
+        <div class="col">
+            <button mat-icon-button >
+                <mat-icon color="accent" matTooltip="supprimer">delete</mat-icon>
+            </button>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+
+</div>
+
+
+
 <div [class.mat-elevation-z5]="isAdd" class="col dialogue">
+    <h1>Ajouter un composant</h1>
     <div>
         <h2>Séléctionner le type du composant </h2>
-        <select class="form-select step-yellow" [disabled]="!isSelected" aria-label="Default select example" (change)="onSelect()" [(ngModel)]="name_component">
+        <select 
+            class="form-select step-yellow" 
+            [disabled]="!isSelected" 
+            (change)="onSelect()" [(ngModel)]="name_component">
             <option selected hidden></option>
             <option *ngFor="let option of options" value={{option}}>{{option | titlecase}}</option>
-            
         </select>
-          
     </div>
     <hr>
     
     <div>
         <h2>Séléctionner un champ pour le composant</h2>
     </div>
-    <div class="button-icon">
-        <button (click)="generateInput('text')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>title</mat-icon> Text</button>
-        <button (click)="generateInput('email')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>email</mat-icon> Email</button>
-        <button (click)="generateInput('number')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>pin</mat-icon> Number</button>
-        <button (click)="generateInput('date')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>date_range</mat-icon> Date</button>
-        <button (click)="generateInput('file')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>image</mat-icon> Image</button>
-        <button (click)="generateInput('textarea')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>notes</mat-icon>Text Area</button>
+    <div >
+        <div class="button-icon">
+            <button (click)="generateInput('input','text')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>title</mat-icon> Text</button>
+            <button (click)="generateInput('input','email')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>email</mat-icon> Email</button>
+            <button (click)="generateInput('input','number')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>pin</mat-icon> Number</button>
+        </div>
+        <div class="button-icon">
+            <button (click)="generateInput('input','date')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>date_range</mat-icon> Date</button>
+            <button (click)="generateInput('input','file')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>image</mat-icon> Image</button>
+            <button (click)="generateInput('input','boolean')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>radio_button_checked</mat-icon> Booléen</button>
+        </div>
+        <div class="button-icon">
+            <button (click)="generateInput('textarea','textarea')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>notes</mat-icon>Text Area</button>
+        </div>
     </div>
+
     <div>
     </div>
     <hr>
 
     <h2>Ajouter un champ</h2>
     <div class="button-icon">
-        <h4>Type du champ: <span class="success mb-2">{{typeField}}</span></h4>
-        <input style="padding:10px;" type="text" placeholder="Saisir le nom du champ" class="form-control typeField mb-2" [(ngModel)]="name_field" [disabled]="typeField === ''">
+        <h4>Type du champ: <span class="success mb-2">{{field_type}}</span></h4>
+        <input style="padding:10px;" type="text" placeholder="Saisir le nom du champ" class="form-control typeField mb-2" [(ngModel)]="name_field" [disabled]="field_type === ''">
         <div class="d-flex align-items-center mb-2">
             <input 
                 [(ngModel)]="isChecked" 
@@ -78,7 +111,7 @@
     <div class="d-flex justify-content-between mt-2 flex-wrap">
         <button class="m-1"  mat-raised-button color="accent" (click)="cancel()">Annuler</button>
         <button class="m-1" [disabled]="!isValidate" mat-raised-button color="primary" (click)="addAnotherField()">Ajouter un nouveau champ</button>
-        <button class="m-1 success" [disabled]="!isValidate"  mat-raised-button (click)="saveModel()">Enregistre le model</button>
+        <button class="m-1 success" [disabled]="!isValidate || fields.length===0"  mat-raised-button (click)="saveModel()">Enregistre le model</button>
     </div>
 </div>
 

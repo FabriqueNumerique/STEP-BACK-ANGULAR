@@ -1,12 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { field } from '../interfaces/field';
+import { model } from '../interfaces/model';
 
-export interface model {
-	id: string,
-	title: string,
-	fields: [{}]
-}
+
 
 
 
@@ -15,6 +13,7 @@ export interface model {
 })
 export class ModelService {
 	models:model[] = []
+	fields:field[]=[]
 
 	constructor(private http:HttpClient) {
 		this.getModels()
@@ -26,6 +25,8 @@ export class ModelService {
 			console.log(this.models);
 		})
 	}
+
+
 
 	
 
