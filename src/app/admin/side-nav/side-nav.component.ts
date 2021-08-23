@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModelService } from 'src/app/systeme/services/model.service';
+import { ModelService } from 'src/app/system/services/model.service';
 
 @Component({
   selector: 'app-side-nav',

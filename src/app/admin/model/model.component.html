@@ -1,11 +1,7 @@
 <div [class.mat-elevation-z5]="isAdd" class="col dialogue">
     <div>
         <h2>Séléctionner le type du composant </h2>
-        <!--<mat-form-field appearance="fill">
-            <mat-label>Nom du contenu</mat-label>
-            <input matInput [(ngModel)]="name_component">
-        </mat-form-field>-->
-        <select class="form-select step-yellow" aria-label="Default select example" (change)="onSelect()" [(ngModel)]="name_component">
+        <select class="form-select step-yellow" [disabled]="!isSelected" aria-label="Default select example" (change)="onSelect()" [(ngModel)]="name_component">
             <option selected hidden></option>
             <option *ngFor="let option of options" value={{option}}>{{option | titlecase}}</option>
             
@@ -23,7 +19,7 @@
         <button (click)="generateInput('number')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>pin</mat-icon> Number</button>
         <button (click)="generateInput('date')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>date_range</mat-icon> Date</button>
         <button (click)="generateInput('file')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>image</mat-icon> Image</button>
-        <button class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>notes</mat-icon>Text Area</button>
+        <button (click)="generateInput('textarea')" class="step-yellow" mat-button [disabled]="name_component==='' || isValidate"><mat-icon>notes</mat-icon>Text Area</button>
     </div>
     <div>
     </div>
@@ -82,7 +78,7 @@
     <div class="d-flex justify-content-between mt-2 flex-wrap">
         <button class="m-1"  mat-raised-button color="accent" (click)="cancel()">Annuler</button>
         <button class="m-1" [disabled]="!isValidate" mat-raised-button color="primary" (click)="addAnotherField()">Ajouter un nouveau champ</button>
-        <button class="m-1 success"  mat-raised-button (click)="saveModel()">Enregistre le model</button>
+        <button class="m-1 success" [disabled]="!isValidate"  mat-raised-button (click)="saveModel()">Enregistre le model</button>
     </div>
 </div>
 

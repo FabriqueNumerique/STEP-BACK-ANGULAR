@@ -30,6 +30,7 @@ import { UserComponent } from './admin/user/user.component';
 import { SideNavComponent } from './admin/side-nav/side-nav.component';
 import { CategoryComponent } from './gabarits/category/category.component';
 import { TagComponent } from './gabarits/tag/tag.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { TagComponent } from './gabarits/tag/tag.component';
     FlexLayoutModule,
     MatInputModule,
     MatSelectModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

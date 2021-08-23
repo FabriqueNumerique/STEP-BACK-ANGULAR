@@ -3,21 +3,10 @@ import {FormControl} from '@angular/forms';
 import { v4 as uuid } from 'uuid';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ModelService } from 'src/app/systeme/services/model.service';
-import { MenusService } from 'src/app/systeme/services/menus.service';
-import { Router } from '@angular/router';
+import { ModelService } from 'src/app/system/services/model.service';
+import { MenusService } from 'src/app/system/services/menus.service';
+import { field } from 'src/app/system/interfaces/field';
 
-export interface field {
-	key: string,
-	type: string,
-	templateOptions: {
-		label: string,
-		placeholder: string,
-		description: string,
-		required: boolean,
-		type: string				
-	}
-  }
 
 @Component({
   selector: 'app-model',
@@ -29,6 +18,7 @@ export class ModelComponent implements OnInit {
 	isAdd:boolean=true
 	isChecked:boolean=true
 	isValidate:boolean=false
+	isSelected:boolean = true
 	selected_component:string="false"
 
 	fields:field[]=[]
@@ -42,7 +32,6 @@ export class ModelComponent implements OnInit {
 		private http:HttpClient, 
 		public modelService:ModelService, 
 		private menuService:MenusService,
-		private router:Router
 		) { }
 
 	ngOnInit(): void {
@@ -72,7 +61,6 @@ export class ModelComponent implements OnInit {
 				templateOptions: {
 					label: this.name_field,
 					placeholder: 'Placeholder',
-					description: 'Description',
 					required: this.isChecked,
 					type:'text'				
 				}
@@ -85,7 +73,6 @@ export class ModelComponent implements OnInit {
 				templateOptions: {
 					label: this.name_field,
 					placeholder: 'Placeholder',
-					description: 'Description',
 					required: this.isChecked,
 					type:'email'				
 				}
@@ -98,7 +85,6 @@ export class ModelComponent implements OnInit {
 				templateOptions: {
 					label: this.name_field,
 					placeholder: 'Placeholder',
-					description: 'Description',
 					required: this.isChecked,
 					type:'number'				
 				}
@@ -111,7 +97,6 @@ export class ModelComponent implements OnInit {
 				templateOptions: {
 					label: this.name_field,
 					placeholder: 'Placeholder',
-					description: 'Description',
 					required: this.isChecked,
 					type:'date'				
 				}
@@ -124,16 +109,29 @@ export class ModelComponent implements OnInit {
 				templateOptions: {
 					label: this.name_field,
 					placeholder: 'Placeholder',
-					description: 'Description',
 					required: this.isChecked,
 					type:'file'				
 				}
 			})
 			break;
+
+			case "textarea":
+			this.fields.push({
+				key: 'textarea',
+				type: 'textarea',
+				templateOptions: {
+					label: this.name_field,
+					placeholder: 'Placeholder',
+					required: this.isChecked,
+				  	rows: 10,
+					type:'textarea'
+				}
+			  })
 			
 		}
 		console.log(this.fields)
 		this.isValidate = true
+		this.isSelected = false
 		this.name_field=""
 		this.typeField=""
 	}
@@ -161,7 +159,7 @@ export class ModelComponent implements OnInit {
 			})
 			this.name_component=""
 		})
-
+		this.isSelected = true
 	}
 
 	
@@ -177,6 +175,8 @@ export class ModelComponent implements OnInit {
 	}
 
 	cancel(){
+		this.isSelected = true
+		this.isValidate = false
 		this.name_component=""
 		this.fields=[]
 	}

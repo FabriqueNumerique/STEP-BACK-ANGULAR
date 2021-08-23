@@ -65,8 +65,13 @@
     left: 16%;
 }
 
-mat-divider{
+.side-left mat-divider{
     background: #ffcc40;
+    margin-bottom: 30px;
+}
+
+.side-right mat-divider{
+    background: #201781;
     margin-bottom: 30px;
 }
 
