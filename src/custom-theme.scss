@@ -1,1 +1,30 @@
 
+
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+@include mat.core();
+
+$step-blue-palette: ( 50: #e3e2f0, 100: #b9b6da, 200: #8a85c1, 300: #5b54a8, 400: #372f95, 500: #140a82, 600: #12097a, 700: #0e076f, 800: #0b0565, 900: #060352, A100: #8785ff, A200: #5552ff, A400: #231fff, A700: #0a05ff, contrast: ( 50: rgba(#000000, 0.87), 100: rgba(#000000, 0.87), 200: rgba(#000000, 0.87), 300: rgba(#000000, 0.87), 400: rgba(#000000, 0.87), 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: rgba(#000000, 0.87), A200: #ffffff, A400: #ffffff, A700: #ffffff, ), );
+
+$step-cyan-palette: ( 50: #e0f6f9, 100: #b3e8f0, 200: #80d8e6, 300: #4dc8db, 400: #26bdd4, 500: #00b1cc, 600: #00aac7, 700: #00a1c0, 800: #0098b9, 900: #0088ad, A100: #d7f5ff, A200: #a4e8ff, A400: #71dbff, A700: #58d5ff, contrast: ( 50: rgba(#000000, 0.87), 100: rgba(#000000, 0.87), 200: rgba(#000000, 0.87), 300: rgba(#000000, 0.87), 400: rgba(#000000, 0.87), 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: rgba(#000000, 0.87), A200: rgba(#000000, 0.87), A400: rgba(#000000, 0.87), A700: rgba(#000000, 0.87), ), );
+
+$step-green-palette: ( 50: #e8f5e9, 100: #c8e6c9, 200: #a5d6a7, 300: #81c784, 400: #66bb6a, 500: #4caf50, 600: #43a047, 700: #388e3c, 800: #2e7d32, 900: #1b5e20, A100: #b9f6ca, A200: #69f0ae, A400: #00e676, A700: #00c853, contrast: ( 50: rgba(#000000, 0.87), 100: rgba(#000000, 0.87), 200: rgba(#000000, 0.87), 300: rgba(#000000, 0.87), 400: rgba(#000000, 0.87), 500: rgba(#000000, 0.87), 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: rgba(#000000, 0.87), A200: rgba(#000000, 0.87), A400: rgba(#000000, 0.87), A700: rgba(#000000, 0.87), ), );
+
+$step-yellow-palette: ( 50: #fff9e8, 100: #fff0c6, 200: #ffe6a0, 300: #ffdb79, 400: #ffd45d, 500: #ffcc40, 600: #ffc73a, 700: #ffc032, 800: #ffb92a, 900: #ffad1c, A100: #ffffff, A200: #ffffff, A400: #ffeccd, A700: #ffe2b3, contrast: ( 50: rgba(#000000, 0.87), 100: rgba(#000000, 0.87), 200: rgba(#000000, 0.87), 300: rgba(#000000, 0.87), 400: rgba(#000000, 0.87), 500: rgba(#000000, 0.87), 600: rgba(#000000, 0.87), 700: rgba(#000000, 0.87), 800: rgba(#000000, 0.87), 900: rgba(#000000, 0.87), A100: rgba(#000000, 0.87), A200: rgba(#000000, 0.87), A400: rgba(#000000, 0.87), A700: rgba(#000000, 0.87), ), );
+
+$step-orange-palette: ( 50: #ffece4, 100: #ffcfba, 200: #ffaf8d, 300: #ff8f5f, 400: #ff773c, 500: #ff5f1a, 600: #ff5717, 700: #ff4d13, 800: #ff430f, 900: #ff3208, A100: #ffffff, A200: #fff5f4, A400: #ffc9c1, A700: #ffb3a7, contrast: ( 50: rgba(#000000, 0.87), 100: rgba(#000000, 0.87), 200: rgba(#000000, 0.87), 300: rgba(#000000, 0.87), 400: rgba(#000000, 0.87), 500: rgba(#fff, 0.87), 600: rgba(#000000, 0.87), 700: rgba(#000000, 0.87), 800: white, 900: white, A100: rgba(#000000, 0.87), A200: rgba(#000000, 0.87), A400: rgba(#000000, 0.87), A700: black, ), );
+
+
+$STEP-SITE-primary: mat.define-palette($step-blue-palette, 500);
+$STEP-SITE-accent: mat.define-palette($step-orange-palette, 500);
+// The warn palette is optional (defaults to red).
+$STEP-SITE-warn: mat.define-palette($step-yellow-palette, 500);
+$STEP-SITE-link: mat.define-palette($step-green-palette, 500);
+$STEP-SITE-info: mat.define-palette($step-cyan-palette, 500);
+
+$STEP-SITE-theme: mat.define-light-theme( ( color: ( primary: $STEP-SITE-primary, accent: $STEP-SITE-accent, warn: $STEP-SITE-warn, link: $STEP-SITE-link, info: $STEP-SITE-info, ), ));
+
+
+@include mat.all-component-themes($STEP-SITE-theme);
+
