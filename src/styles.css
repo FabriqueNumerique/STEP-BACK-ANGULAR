@@ -1,4 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Rubik', sans-serif; }
+.success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.info {
+    background-color: #00b1cc;
+    color: white;
+}
+
+h1,h2,h3,h4,h5,h6,a,p,span,button{
+    font-family: 'Rubik', sans-serif; 
+}
+
+.step-blue {
+    background-color: #140a82;
+    color: white;
+}
+
+.step-green {
+    background-color: #24a640;
+}
+
+.step-yellow {
+    background-color: #ffcc40;
+}
+
+.step-cyan {
+    background-color: #00b0cc;
+    color: white;
+}
+
+.step-orange {
+    background-color: #ff5e1a;
+    color: white;
+}

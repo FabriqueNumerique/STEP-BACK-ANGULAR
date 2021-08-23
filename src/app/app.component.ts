@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenusService } from './systeme/services/menus.service';
+import { MenusService } from './system/services/menus.service';
 
 @Component({
   selector: 'app-root',
