@@ -38,6 +38,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { SinglArticleComponent } from './gabarits/singl-article/singl-article.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     UserComponent,
     SideNavComponent,
     CategoryComponent,
-    TagComponent
+    TagComponent,
+    SinglArticleComponent
 
   ],
   imports: [
@@ -77,7 +79,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatFormFieldModule,
     FormlyBootstrapModule,
     AccordionModule.forRoot(),
-    MatExpansionModule
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

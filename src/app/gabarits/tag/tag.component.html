@@ -1,1 +1,51 @@
-<p>tag works!</p>
+<div *ngIf="displayAlert" class="{{msg.class}} msg" [style.top]="top">
+    <h3>{{msg.text}}</h3>
+    <button *ngIf="deleteAlert" mat-button  (click)="confirmDelete()">
+        <mat-icon>done</mat-icon>
+    </button>
+    <button mat-button  (click)="closeAlert()">
+        <mat-icon>close</mat-icon>
+    </button>
+    
+</div>
+
+<div *ngIf="tags.length>0" style="margin:5%;">
+    <mat-accordion >
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h1>Liste des étiquettes</h1>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+                <div class="col"><h3 class="title">Nom de catégorie</h3></div>
+                <div class="col"><h3 class="title">Actions</h3></div>
+                <mat-divider></mat-divider>
+            </div>
+            <div class="row" *ngFor="let tag of tags">
+                <div class="col"><h3>{{tag.name}}</h3></div>
+                <div class="col">
+                    <button mat-icon-button (click)="deleteTag(tag.id,tag.name,$event)">
+                        <mat-icon color="accent" matTooltip="supprimer">delete</mat-icon>
+                    </button>
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<div [class.mat-elevation-z5]="fields" class="elevation">
+    <h1>Ajouter une étiquette</h1>
+    <form [formGroup]="form" >
+        <formly-form [model]="model" [fields]="fields" [form]="form" ></formly-form>
+        <button  mat-raised-button
+        (click)="saveTag($event)"
+            color="primary" 
+            style="margin-top:20px"
+            [disabled]="!form.valid">
+            Enregistrer
+        </button>
+    </form>
+</div>

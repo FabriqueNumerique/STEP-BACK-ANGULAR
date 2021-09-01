@@ -1,3 +1,5 @@
+
+
 <div *ngIf="fields" style="margin:5%;">
     <mat-accordion >
         <mat-expansion-panel (opened)="panelOpenState = true"
@@ -12,21 +14,24 @@
                 <div class="col"><h3>Type</h3></div>
                 <div class="col"><h3>Requis</h3></div>
                 <div class="col"><h3>Actions</h3></div>
-                <mat-divider><mat-icon>more_vert</mat-icon></mat-divider>
+                <mat-divider></mat-divider>
             </div>
-            <div class="row" *ngFor="let field of fields">
+            <div class="row" *ngFor="let field of fields;let i = index">
                 <div class="col"><h3>{{field.templateOptions.label}}</h3></div>
                 <div class="col"><h3>{{field.templateOptions.type}}</h3></div>
                 <div class="col"><h3>{{field.templateOptions.required}}</h3></div>
                 <div class="col">
-                    <button mat-icon-button >
+                    <button mat-icon-button (click)="deleteField(id,i,$event)">
                         <mat-icon color="accent" matTooltip="supprimer">delete</mat-icon>
                     </button>
                 </div>
                 <mat-divider></mat-divider>
             </div>
-            <button mat-icon-button (click)="addField()">
+            <button mat-icon-button *ngIf="!plus" (click)="addField()">
                 <mat-icon color="primary" matTooltip="ajouter un champ">add</mat-icon>
+            </button>
+            <button mat-icon-button *ngIf="plus" (click)="minus()">
+                <mat-icon color="primary" matTooltip="annuler">remove</mat-icon>
             </button>
             <div *ngIf="isAddClicked" class="row d-flex align-items-center flex-wrap">
                 <div class="col">
@@ -44,14 +49,14 @@
                         <option value="textarea">Textarea</option>
                     </select>
                 </div>
-                <div class="col">
-                    <input class="form-check-input m-1" [(ngModel)]="isChecked" type="checkbox" value="" id="flexCheckDefault">
+                <div class="col ">
+                    <input class=" m-1" [(ngModel)]="isChecked" type="checkbox" value="" id="flexCheckDefault">
                     <label class="form-check-label m-1" for="flexCheckDefault">
                         Champ Requis
                     </label>
                 </div>
                 <div class="col">
-                    <button (click)="saveField()" mat-button class="success" [disabled]="field_type ==='' || field_name ===''">
+                    <button (click)="saveField($event)" mat-button class="success" [disabled]="field_type ==='' || field_name ===''">
                         Enregistrer
                     </button>
                 </div>
@@ -60,7 +65,7 @@
     </mat-accordion>
 </div>
 
-<div *ngIf="fields" style="margin:5%;">
+<div *ngIf="articles.length>0" style="margin:5%;">
     <mat-accordion >
         <mat-expansion-panel (opened)="panelOpenState = true"
                              (closed)="panelOpenState = false">
@@ -69,23 +74,87 @@
                     <h1>Liste des articles</h1>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-
-            <div>Content</div>
+            <div class="row">
+                <div class="col"><h3 class="title">Titre</h3></div>
+                <div class="col"><h3 class="title">Date</h3></div>
+                <div class="col"><h3 class="title">Content</h3></div>
+                <div class="col"><h3 class="title">Catégorie</h3></div>
+                <div class="col"><h3 class="title">Etiquettes</h3></div>
+                <div class="col"><h3 class="title">Actions</h3></div>
+            </div>
+            <div class="row" *ngFor="let article of articles" >
+                <mat-divider></mat-divider>
+                <div class="col"><h3>{{article.title}}</h3></div>
+                <div class="col"><h3>{{article.date}}</h3></div>
+                <div class="col"><h3>{{article.content | slice:0:50}}...</h3></div>
+                <div class="col"><h3>{{article.category}}</h3></div>
+                <div class="col"><h3>{{article.tag}}</h3></div>
+                <div class="col">
+                    <button mat-icon-button (click)="displayArticle(article.id)">
+                        <mat-icon color="primary" matTooltip="afficher">visibility</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteArticle(article.id,article.title,$event)">
+                        <mat-icon color="accent" matTooltip="supprimer">delete</mat-icon>
+                    </button>
+                </div>
+            </div>
 
         </mat-expansion-panel>
     </mat-accordion>
 </div>
 
-<div [class.mat-elevation-z5]="fields" class="elevation">
-    <h1>Ajouter un article</h1>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-        <formly-form [model]="model" [fields]="fields" [form]="form" ></formly-form>
-        <button  mat-raised-button
-            color="primary" 
-            style="margin-top:20px"
-            [disabled]="!form.valid">
-            Enregistrer
-        </button>
-    </form>
+
+<div style="margin:5%;">
+    <mat-accordion >
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h1>Ajouter un article</h1>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form [formGroup]="form">
+                <formly-form [model]="model" [fields]="fields" [form]="form" ></formly-form>
+                <label for="">catégorie</label>
+                <select 
+                    [ngModelOptions]="{standalone: true}"
+                    class="form-select" 
+                    [(ngModel)]="category">
+                    <option selected hidden></option>
+                    <option *ngFor="let category of categories" value={{category.name}}>{{category.name}}</option>
+                </select>
+
+                <label class="mt-3" for="">étiquettes</label>
+                <select 
+                    multiple
+                    [ngModelOptions]="{standalone: true}"
+                    class="form-select" 
+                    [(ngModel)]="tag">
+                    <option selected hidden></option>
+                    <option *ngFor="let tag of tags" value={{tag.name}}>{{tag.name}}</option>
+                </select>
+                <button  mat-raised-button
+                    color="primary" 
+                    style="margin-top:20px"
+                    (click)="saveArticle($event)"
+                    [disabled]="!form.valid">
+                    Enregistrer
+                </button>
+            </form>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<div *ngIf="displayAlert" class="{{msg.class}} msg" [style.top]="top">
+    <h3>{{msg.text}}</h3>
+    <button *ngIf="deleteAlert" mat-button  (click)="confirmDelete()">
+        <mat-icon>done</mat-icon>
+    </button>
+    <button *ngIf="deleteChamp" mat-button  (click)="confirmDeleteField()">
+        <mat-icon>done</mat-icon>
+    </button>
+    <button mat-button  (click)="closeAlert()">
+        <mat-icon>close</mat-icon>
+    </button>
 </div>
   

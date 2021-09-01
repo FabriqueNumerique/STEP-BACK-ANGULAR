@@ -2,15 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { AccueilComponent } from 'src/app/gabarits/accueil/accueil.component';
-// import { BlogComponent } from 'src/app/gabarits/blog/blog.component';
-// import { ArticleComponent } from '../../gabarits/article/article.component';
-// import { ContactComponent } from 'src/app/gabarits/contact/contact.component';
-// import { FormsComponent } from 'src/app/admin/forms/forms.component';
-// import { Erreur404Component } from 'src/app/structure/erreur404/erreur404.component';
+
 import { Route } from '@angular/compiler/src/core';
-import { UserComponent } from 'src/app/admin/user/user.component';
-import { ModelComponent } from 'src/app/admin/model/model.component';
 import { environment } from 'src/environments/environment';
 import { ArticleComponent } from 'src/app/gabarits/article/article.component';
 import { CategoryComponent } from 'src/app/gabarits/category/category.component';

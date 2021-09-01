@@ -1,1 +1,51 @@
-<p>category works!</p>
+<div *ngIf="displayAlert" class="{{msg.class}} msg" [style.top]="top">
+    <h3>{{msg.text}}</h3>
+    <button *ngIf="deleteAlert" mat-button  (click)="confirmDelete($event)">
+        <mat-icon >done</mat-icon>
+    </button>
+    <button mat-button  (click)="closeAlert()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div *ngIf="categories.length>0" style="margin:5%;">
+    <mat-accordion >
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h1>Liste des catégories</h1>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+                <div class="col"><h3 class="title">Nom de catégorie</h3></div>
+                <div class="col"><h3 class="title">Actions</h3></div>
+                <mat-divider></mat-divider>
+            </div>
+            <div class="row" *ngFor="let category of categories">
+                <div class="col"><h3>{{category.name}}</h3></div>
+                <div class="col">
+                    <button mat-icon-button (click)="deleteCategory(category.id,category.name,$event)">
+                        <mat-icon color="accent" matTooltip="supprimer">delete</mat-icon>
+                    </button>
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<div [class.mat-elevation-z5]="fields" class="elevation">
+    <h1>Ajouter une catégorie</h1>
+    <form [formGroup]="form">
+        <formly-form [model]="model" [fields]="fields" [form]="form" ></formly-form>
+        <button  mat-raised-button
+            color="primary" 
+            style="margin-top:20px"
+            (click)="saveCategory($event)"
+            [disabled]="!form.valid">
+            Enregistrer
+        </button>
+    </form>
+</div>
+

@@ -16,12 +16,9 @@ import { field } from 'src/app/system/interfaces/field';
 export class ModelComponent implements OnInit {
 	panelOpenState = false;
 	hideRequiredControl = new FormControl(false);
-	isAdd:boolean=true
 	isChecked:boolean=true
 	isValidate:boolean=false
 	isSelected:boolean = true
-	selected_component:string="false"
-
 	fields:field[]=[]
 	name_component:string=""
 	name_field:string=""
@@ -30,6 +27,8 @@ export class ModelComponent implements OnInit {
 	rows:number = 0
 	models :any = []
 	options = ['article','category','tag']
+	id:string = ''
+	
 
 	constructor(
 		private http:HttpClient, 
@@ -38,20 +37,22 @@ export class ModelComponent implements OnInit {
 		) { }
 
 	ngOnInit(): void {
-		console.log(uuid())	
 		this.onSelect()
-		this.models = this.modelService.models
-		console.log("models existants ", this.models )
 	}
 
 	onSelect(){
-		let models:any = []
-		console.log(this.modelService.models);
+		let modelDispo:any = []
+		this.modelService.getModels()
 		this.modelService.models.map(model => {
-			models.push(model.title)
-			console.log("models ",models)
-			this.options = this.options.filter(e => !models.includes(e))
+			modelDispo.push(model.title)
+			
 		})
+		this.options = ['article','category','tag']
+		this.options = this.options.filter(e => !modelDispo.includes(e))
+		this.menuService.getRoutes()
+		this.modelService.getModels()
+		this.models =  this.modelService.models
+		
 	}
 
   	generateInput(input_type:string,field_type:string){
@@ -61,7 +62,14 @@ export class ModelComponent implements OnInit {
  	}
 
 	addField(){
+		let id_field = uuid()
+		if (this.name_component != 'article'){
+			this.name_field = 'name'
+			this.field_type ='text'
+			this.input_type = 'input'
+		}
 		this.fields.push({
+			id:id_field,
 			key: this.name_field,
 			type: this.input_type,
 			templateOptions: {
@@ -81,24 +89,24 @@ export class ModelComponent implements OnInit {
 	}
 
 	saveModel(){
+		if (this.name_component != 'article') this.addField()
+		this.id=uuid()
 		const bodyModel ={
-			id:uuid(),
+			id:this.id,
 			title:this.name_component,
 			fields:this.fields
 		}
-		console.log(bodyModel)
 		this.http.post(`${environment.url}/add-model`, bodyModel)
 		.subscribe(res => {
 			console.log(res)
-			this.modelService.getModels()
+			this.onSelect()
 			const bodyRoute ={
-				id:uuid(),
+				id:this.id,
 				route:{"path":this.name_component, "component":`${this.name_component}Component`}
 			}
 			this.http.post(`${environment.url}/add-menu-principal`, bodyRoute)
 			.subscribe(res => {
-				console.log(res)
-				this.menuService.getRoutes()
+				console.log("name component ",this.name_component)
 				this.onSelect()
 			})
 			this.name_component=""
@@ -107,8 +115,6 @@ export class ModelComponent implements OnInit {
 		this.isValidate = false
 		this.fields = []
 	}
-
-	
 
 	addAnotherField(){
 		this.isValidate = false
@@ -127,6 +133,20 @@ export class ModelComponent implements OnInit {
 		this.name_field=""
 		this.field_type=""
 		this.fields=[]
+	}
+
+	deleteModel(id:string){
+		console.log(id);
+		this.http.delete(`${environment.url}/delete-model`,{params:{id}})
+		.subscribe((res:any)=> {
+			console.log(res)
+			this.onSelect()
+			this.http.delete(`${environment.url}/delete-menu-principal`,{params:{id}})
+			.subscribe((res:any)=> {
+				console.log(res)
+				this.onSelect()
+			})
+		})
 	}
 
 }

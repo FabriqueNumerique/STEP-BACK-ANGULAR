@@ -1,0 +1,19 @@
+h1,h2{
+    font-weight: bolder;
+    margin:0;
+}
+
+.title{
+    font-weight: bolder;
+}
+
+.msg{
+    padding: 1%;
+    margin: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.msg h3{margin: 0; padding-left: 5px;}

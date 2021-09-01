@@ -11,7 +11,7 @@
     left: 0;
 }
 .side-right{
-    background: #ff5e1a;
+    background:#ff5e1a;
     height: 100vh;
     width: 15%;
     position: fixed;
@@ -19,7 +19,7 @@
 }
 
 .side-left a{
-    color: #ffcc40;
+    color: white;
     width: 100%;
     text-decoration: none;
     display: block;
@@ -30,7 +30,7 @@
 } 
 
 .side-right a{
-    color: #140a82;
+    color: white;
     width: 100%;
     text-decoration: none;
     display: block;
@@ -38,6 +38,12 @@
     height: 40px;
     margin-top: 15px;
     padding: 5px;
+    font-weight: 600;
+}
+
+
+.right-logo-button div:hover{
+    background: #da5015;
 }
 
 .left-logo-button div{
@@ -46,7 +52,7 @@
 }
 
 .left-logo-button div:hover{
-    background: #142a82;
+    background: #0a0544;
 }
 
 .right-logo-button div{
@@ -54,9 +60,7 @@
     padding-bottom: 5px;
 }
 
-.right-logo-button div:hover{
-    background: #ef5e1a;
-}
+
 
 
 .content{
@@ -65,25 +69,22 @@
     left: 16%;
 }
 
-.side-left mat-divider{
-    background: #ffcc40;
+
+
+.side-right mat-divider, .side-left mat-divider{
+    background: white;
     margin-bottom: 30px;
 }
 
-.side-right mat-divider{
-    background: #201781;
-    margin-bottom: 30px;
-}
-
-.left-icon{
-    color:#ffcc40;
-}
-
-.right-icon{
-    color:#201781;
+.left-icon,.right-icon{
+    color:white;
 }
 
 
+.side-right h2{
+    font-weight: bolder;
+    color: white;
+}
 
 
 
