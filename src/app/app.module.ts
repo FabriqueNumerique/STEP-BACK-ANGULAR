@@ -40,6 +40,11 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SinglArticleComponent } from './gabarits/singl-article/singl-article.component';
 
+// Import the module from the SDK
+import { AuthModule } from '@auth0/auth0-angular';
+import { TemplateComponent } from './gabarits/template/template.component';
+import { FileFieldsComponent } from './gabarits/file-fields/file-fields.component';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +60,9 @@ import { SinglArticleComponent } from './gabarits/singl-article/singl-article.co
     SideNavComponent,
     CategoryComponent,
     TagComponent,
-    SinglArticleComponent
+    SinglArticleComponent,
+    TemplateComponent,
+    FileFieldsComponent
 
   ],
   imports: [
@@ -80,6 +87,11 @@ import { SinglArticleComponent } from './gabarits/singl-article/singl-article.co
     FormlyBootstrapModule,
     AccordionModule.forRoot(),
     MatExpansionModule,
+    // Import the module into the application, with configuration
+    AuthModule.forRoot({
+      domain: 'dev-m438qh2i.us.auth0.com',
+      clientId: 'PxHnQFeh6V1I1hMuiyX0loFfcplCRE38'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

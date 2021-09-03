@@ -1,0 +1,20 @@
+.template{
+    border: 1px solid black;
+    padding: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.template label{
+    cursor: pointer;
+}
+
+h1,h2,h3{
+    font-weight: bolder;
+    margin: 0;
+    padding: 0;
+}
+
+mat-divider{
+    background-color: black;
+}

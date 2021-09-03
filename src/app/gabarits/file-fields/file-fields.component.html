@@ -1,0 +1,58 @@
+<div style="margin:5%;">
+    <h1 class="mb-3">Article (add)</h1>
+    <mat-divider class="w-75 my-3"></mat-divider>
+    <h2>2 - Fill the fields</h2>
+    <div style="margin: 5%;">
+        <form [formGroup]="form">
+            <div class="form">
+                <div class="side-left">
+                    <mat-form-field class="w-100" >
+                        <mat-label>Title</mat-label>
+                        <input matInput placeholder="Title" formControlName="title" >
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <mat-label>Content</mat-label>
+                        <textarea matInput formControlName="content"></textarea>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <mat-label>Choose categories</mat-label>
+                        <mat-select multiple formControlName="category">
+                          <mat-option *ngFor="let category of categories" [value]="category.name">{{category.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <mat-label>Choose tags</mat-label>
+                        <mat-select multiple formControlName="tag">
+                          <mat-option *ngFor="let tag of tags" value={{tag.name}}>{{tag.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <input type="checkbox" formControlName="published" id="published" class="mb-2 mr-2">
+                    <label for="published">Published</label>
+
+                </div>
+                <div class="dropzone" cdkDrag>
+                    <img src="assets/img/drag.png" alt="">
+                    <input type="file" #fileDropRef id="fileDropRef">
+                    <h3>Drag and drop file here</h3>
+                    <h3>or</h3>
+                    <label for="fileDropRef">Browse for file</label>
+                </div>
+            </div>
+            <button mat-raised-button color="primary" (click)="submit($event)">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="displayAlert" class="{{msg.class}} msg" [style.top]="top">
+    <h3>{{msg.text}}</h3>
+    <button mat-button  (click)="closeAlert()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<!--[ngModelOptions]="{standalone: true}"-->
+<!--<script>$('.selectpicker').selectpicker();</script>-->

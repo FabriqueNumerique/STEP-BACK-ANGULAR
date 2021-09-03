@@ -80,7 +80,14 @@ export class ArticleComponent implements OnInit {
 
 	addField(){
 		this.isAddClicked=true
-		this.plus=true	
+	}
+
+	abortAddArticle(){
+		this.isAddClicked=false
+	}
+
+	addArticle(){
+		this.isAddClicked=true
 	}
 
 	deleteField(id:string,index:number,event:MouseEvent){
@@ -187,14 +194,25 @@ export class ArticleComponent implements OnInit {
 		this.displayAlert = false;
 	}
 
-	confirmDelete(){
+	confirmDelete(event:MouseEvent){
+		this.http.delete(`${environment.url_component}/article/delete-article`,{params:{id:this.id}})
+		.subscribe((res:any) => {
 
+			this.deleteAlert = false
+			this.deleteChamp = false
+			this.getArticle()
+			this.msg.text = res
+			this.msg.class = "step-orange"
+			this.showAlert()
+			this.top = (event.clientY).toString()+"px"
+			console.log(this.top);
+		})
 	}
 
 	deleteArticle(id:string,title:string,event:MouseEvent){
 		this.deleteAlert = true
 		this.deleteChamp = false
-		console.log(id);
+		this.id = id
 		this.msg.text = `Etes-vous sûrs de supprimer l'article ${title}?`
 		this.msg.class = "step-yellow"
 		this.showAlert()

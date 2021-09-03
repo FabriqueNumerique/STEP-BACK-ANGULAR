@@ -1,16 +1,25 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 
 @Component({
-  selector: 'app-accueil',
-  templateUrl: './accueil.component.html',
-  styleUrls: ['./accueil.component.css']
+	selector: 'app-accueil',
+	templateUrl: './accueil.component.html',
+	styleUrls: ['./accueil.component.css']
 })
-export class AccueilComponent {
+export class AccueilComponent implements OnInit {
 
 
+	token:any= ''
+	name:any=''
+	constructor() { 
+		
+	}
 
-  constructor() {}
+  	ngOnInit(): void {
+		  this.token = localStorage.getItem('token')
+		  this.name = localStorage.getItem('name')
+		  
+	}
 
 }

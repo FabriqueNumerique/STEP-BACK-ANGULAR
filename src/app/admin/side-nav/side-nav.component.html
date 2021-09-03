@@ -1,38 +1,78 @@
 <div class="row w-100 body-sideNav">
-    <div class="side-left" >
-        <div class="left-logo-button">
-            <img src="assets/logo_white.png" height="100px" alt="">		
-            <div class="d-flex align-items-center">
-                <mat-icon class="left-icon">person</mat-icon>
-                <a routerLink="user">User</a>
+    <div class="side-left pt-3">
+        <img src="assets/img/logo_white.png" width="150px" alt="" routerLink='accueil'>		
+        <h2>COMPONENTS</h2>
+        <div class="left-menu">
+            <div class="adjust">
+                <mat-icon>adjust</mat-icon>
+                <a routerLink="article">Articles</a>
+            </div>
+            <div class="adjust">
+                <mat-icon>adjust</mat-icon>
+                <a>Carousels</a>
+            </div>
+            <div class="adjust">
+                <mat-icon>adjust</mat-icon>
+                <a>Buttons</a>
+            </div>
+            <div class="adjust">
+                <mat-icon>adjust</mat-icon>
+                <a>Cards</a>
             </div>
 
-            <div class="d-flex align-items-center"> 
-                <mat-icon class="left-icon">construction</mat-icon>
-                <a routerLink="model">Générateur de contenu</a>
+        </div>
+        <mat-divider class="my-2"></mat-divider>
+
+        <h2>CUSTOM COMPONENTS</h2>
+        <div class="menu-vertical left-menu">
+            <div class="adjust">
+                <mat-icon>adjust</mat-icon>
+                <a>Géolocalisation map</a>
+            </div>
+            <div class="adjust">
+                <mat-icon>adjust</mat-icon>
+                <a>Another example</a>
+            </div>
+            <div class="adjust">
+                <mat-icon>adjust</mat-icon>
+                <a>Another</a>
+            </div>
+           
+        </div>
+        <mat-divider class="my-2"></mat-divider>
+
+        <h2>METADATA</h2>
+        <div class="menu-vertical left-menu">
+            <div class="adjust">
+                <mat-icon>adjust</mat-icon>
+                <a routerLink="category">Catégories</a>
+            </div>
+            <div class="adjust">
+                <mat-icon>adjust</mat-icon>
+                <a routerLink="tag">Etiquettes</a>
             </div>
             
-            <div class="d-flex align-items-center">
-                <mat-icon class="left-icon">help</mat-icon>
-                <a routerLink="user">Aide</a>
-            </div>
-            <div class="d-flex align-items-center">
-                <mat-icon class="left-icon">settings</mat-icon>
-                <a routerLink="user">Paramétre</a>
-            </div>
+        </div>
+        <mat-divider class="my-2"></mat-divider>
+        <div class="menu-vertical left-menu">
+            <!--<div class="d-flex align-items-center p-3" *ngFor="let model of modelService.models">
+                <a routerLink={{model.title}}>{{model.title | titlecase}}</a>
+            </div>-->
         </div>
     </div>
-    <div class="content p-2">
+    <div class="content p-2" >
+        
         <router-outlet></router-outlet>
     </div>
     <div class="side-right" >
-        <div style="height: 100px; display:flex;justify-content:center; padding-top:35px;">
-            <h2>Composants</h2>
+        <div class="right-menu" *ngFor="let rightMenu of rightMenus">
+            <a routerLink="{{rightMenu.link}}"><mat-icon matTooltip="{{rightMenu.title}}">{{rightMenu.icon}}</mat-icon></a>
         </div>
-        <div class="right-logo-button">
-            <div class="d-flex align-items-center" *ngFor="let model of modelService.models">
-                <a routerLink={{model.title}}>{{model.title | titlecase}}</a>
-            </div>
+        <div class="right-menu">
+            <a (click)="auth.logout({ returnTo: document.location.origin })" 
+                style="cursor: pointer;">
+                <mat-icon matTooltip="Déconnexion">logout</mat-icon>
+            </a>
         </div>
     </div>
 </div>

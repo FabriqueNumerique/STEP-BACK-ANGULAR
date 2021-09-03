@@ -3,12 +3,17 @@
     margin: 5%;
 }
 
-h1,h2{
+h1,h2,h3{
     font-weight: bolder;
-    margin:0;
+    margin: 0;
+    padding: 0;
 }
 
-.title{
+
+
+
+
+.title {
     font-weight: bolder;
 }
 
@@ -22,7 +27,7 @@ h1,h2{
     border-radius: 5px;
     position: absolute;
     z-index: 100;
-    width: 88%;
+    width: 83%;
     animation: fading 1s;
 }
 
@@ -31,4 +36,41 @@ h1,h2{
 @keyframes fading {
     0% { opacity: 0; }
     100% { opacity: 1; }
+}
+
+.list-article{
+    padding-top: 10px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    
+}
+
+mat-icon{
+    cursor: pointer;
+}
+
+.template{
+    border: 1px solid black;
+    padding: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.articles{
+    width: 45%;
+    border: black 1px solid;
+    margin: 10px;
+    padding: 10px;
+}
+
+.articles .row{
+    display: flex;
+    /* align-items: center; */
+}
+
+.action{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
 }

@@ -3,3 +3,16 @@ mat-toolbar {
     background: #140a82;
     color: white;
 }
+
+.elevation{
+    padding: 5%;
+    margin: 5%;
+}
+
+h1,h2{
+    font-weight: bolder;
+}
+
+.describe h3{
+    text-align: justify;
+}

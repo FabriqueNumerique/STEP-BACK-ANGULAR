@@ -1,0 +1,97 @@
+<div style="margin: 5%;" >
+    <h1 class="mb-3">Article (add)</h1>
+    <mat-divider class="w-75 my-3"></mat-divider>
+    <h2>1 - Choose template</h2>
+    <div class="row mb-5">
+        <div class="col template">
+            <input type="radio" name="template" value="template1" id="template1" [(ngModel)]='template'>
+            <label for="template1">
+                <div class="row">
+                    <div class="col-4 alert-secondary" style="height: 130px;"></div>
+                    <div class="col">
+                        <h2>Title</h2>
+                        <h5>Dans certaines agences dans les années 90 circulait un texte appelé 
+                            le “tramway jaune” ou “yellow subway“, sensés remplacer le Lorem 
+                            Ipsum pour donner un aspect plus moderne au contenu. Mais on 
+                            cherchait trop .. 
+                        </h5>
+                    </div>
+                </div>
+            </label>
+        </div>
+        <div class="col template">
+            <input type="radio" name="template" value="template2" id="template2" [(ngModel)]='template'>
+            <label for="template2">
+                <div class="row">
+                    <div class="col" >
+                        <h2>Title</h2>
+                        <h5>Dans certaines agences dans les années 90 circulait un texte appelé 
+                            le “tramway jaune” ou “yellow subway“, sensés remplacer le Lorem 
+                            Ipsum pour donner un aspect plus moderne au contenu. Mais on 
+                            cherchait trop .. 
+                        </h5>
+                    </div>
+                    <div class="col-4 alert-secondary" style="height: 130px;"></div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col template">
+            <input type="radio" name="template" value="template3" id="template3" [(ngModel)]='template'>
+            <label for="template3">
+                <div class="row">
+                    <div class="col" >
+                        <div class="col alert-secondary mb-2" style="height: 130px;"></div>
+                        <h2>Title</h2>
+                        <h5>Dans certaines agences dans les années 90 circulait un texte appelé 
+                            le “tramway jaune” ou “yellow subway“, sensés remplacer le Lorem 
+                            Ipsum pour donner un aspect plus moderne au contenu. Mais on 
+                            cherchait trop .. 
+                        </h5>
+                    </div>
+                </div>
+            </label>
+        </div>
+        <div class="col template">
+            <input type="radio" name="template" value="template4" id="template4" [(ngModel)]='template'>
+            <label for="template4">
+                <div class="row">
+                    <div class="col" >
+                        <h2>Title</h2>
+                        <div class="col alert-secondary mb-2" style="height: 130px;"></div>
+                        <h5>Dans certaines agences dans les années 90 circulait un texte appelé 
+                            le “tramway jaune” ou “yellow subway“, sensés remplacer le Lorem 
+                            Ipsum pour donner un aspect plus moderne au contenu. Mais on 
+                            cherchait trop .. 
+                        </h5>
+                    </div>
+                </div>
+            </label>
+        </div>
+        <div class="col template">
+            <input type="radio" name="template" value="template5" id="template5" [(ngModel)]='template'>
+            <label for="template5" >
+                <div class="row">
+                    <div class="col" >
+                        <h2>Title</h2>
+                        <h5>Dans certaines agences dans les années 90 circulait un texte appelé 
+                            le “tramway jaune” ou “yellow subway“, sensés remplacer le Lorem 
+                            Ipsum pour donner un aspect plus moderne au contenu. Mais on 
+                            cherchait trop .. 
+                        </h5>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+    <div class="my-3 text-right">
+        <button mat-raised-button class="mr-3" routerLink="/article">
+            <mat-icon>arrow_back_ios</mat-icon>
+            Cancel</button>
+        <button mat-raised-button [disabled]="!template" (click)="fillFields()">Next
+             <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+    </div>
+</div>
