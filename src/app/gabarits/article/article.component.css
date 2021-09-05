@@ -65,7 +65,6 @@ mat-icon{
 
 .articles .row{
     display: flex;
-    /* align-items: center; */
 }
 
 .action{
@@ -74,3 +73,21 @@ mat-icon{
     justify-content: space-between;
     align-items: flex-end;
 }
+
+.image {
+    display: flex;
+}
+
+.image img{
+    width: 99%;
+}
+
+mat-divider{
+    background-color: black;
+}
+
+@media (max-width:1000px) {
+	.articles{
+        width: 100%;
+	}
+} 

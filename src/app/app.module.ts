@@ -36,6 +36,8 @@ import { TagComponent } from './gabarits/tag/tag.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+
+
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SinglArticleComponent } from './gabarits/singl-article/singl-article.component';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import { DataService } from 'src/app/system/services/data.service';
@@ -14,7 +14,6 @@ import { environment } from 'src/environments/environment';
 })
 export class FileFieldsComponent implements OnInit {
 
-	// form = new FormGroup({});
 	form:any = FormGroup
 	id:string = ''
 	category:string = ""
@@ -30,6 +29,10 @@ export class FileFieldsComponent implements OnInit {
 	deleteAlert: boolean = false;
 	template:string=''
 
+	file:any
+	blob:any
+	extension:string=''
+
 	constructor(
 		private route:ActivatedRoute,
 		private dataService:DataService,
@@ -42,7 +45,11 @@ export class FileFieldsComponent implements OnInit {
 		console.log(this.template);
 		this.dataService.getCategory().subscribe(res => this.categories = res)
 		this.dataService.getTag().subscribe(res => this.tags = res)
+		this.initForm()
+		
+	}
 
+	initForm(){
 		this.form=this.formBuilder.group({
 			title:['', Validators.required],
 			content:['',Validators.required],
@@ -54,23 +61,52 @@ export class FileFieldsComponent implements OnInit {
 	}
 
 
+	ConvertToBlob(event:any){
+		this.file = event.target.files[0]
+		console.log(this.file)
+		if (this.file){
+		  	this.file.arrayBuffer().then((arrayBuffer:any) => {
+				this.blob = new Blob([new Uint8Array(arrayBuffer)], {type:  this.file.type });
+				this.extension = this.blob.type.split('/').pop()
+		  	})
+		}
+		
+		
+	}
+	
 	submit(event:MouseEvent){	
-		this.form.value.id = uuid()
+		const id = uuid()
+		this.form.value.id = id
 		this.form.value.authorId = localStorage.getItem('id')
 		this.form.value.date = new Date().toISOString()
 		this.form.value.template = this.template
-		console.log(this.form.value);
-		this.http.post(`${environment.url_component}/article/add-article`,this.form.value)
-		.subscribe((res:any)=>{
-		console.log(res);
-		this.displayAlert = true
-			this.msg.text = res
-			this.msg.class = "step-green"
+		if (this.extension != ""){
+			this.form.value.image = id+'.'+this.extension
+		}
+		const params = this.form.value
+		console.log(params);
+		if (this.form.status === 'VALID') {
+			this.http.post(`${environment.url_component}/article/add-article`,
+			this.blob,{params})
+			.subscribe((res:any)=>{
+				console.log(res);
+				this.displayAlert = true
+				this.msg.text = res
+				this.msg.class = "step-green"
+				this.showAlert()
+				this.top = (event.clientY+20).toString()+"px"
+				this.initForm()
+				this.file=''
+				
+			})
+		}
+		else {
+			this.displayAlert = true
+			this.msg.text = 'This form is invalid !!!'
+			this.msg.class = "step-yellow"
 			this.showAlert()
 			this.top = (event.clientY+20).toString()+"px"
-		})
-		
-		this.form.reset();
+		}
 	}
 
 	showAlert(){

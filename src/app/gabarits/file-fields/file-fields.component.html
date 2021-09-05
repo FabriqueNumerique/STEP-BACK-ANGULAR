@@ -4,8 +4,8 @@
     <h2>2 - Fill the fields</h2>
     <div style="margin: 5%;">
         <form [formGroup]="form">
-            <div class="form">
-                <div class="side-left">
+            <div class="form row">
+                <div class="col-lg-7 col-md-11 col-sm-11 ">
                     <mat-form-field class="w-100" >
                         <mat-label>Title</mat-label>
                         <input matInput placeholder="Title" formControlName="title" >
@@ -13,36 +13,37 @@
 
                     <mat-form-field class="w-100">
                         <mat-label>Content</mat-label>
-                        <textarea matInput formControlName="content"></textarea>
+                        <textarea matInput formControlName="content" rows="5"></textarea>
                     </mat-form-field>
 
                     <mat-form-field class="w-100">
-                        <mat-label>Choose categories</mat-label>
+                        <mat-label>Choose category (choice multiple)</mat-label>
                         <mat-select multiple formControlName="category">
                           <mat-option *ngFor="let category of categories" [value]="category.name">{{category.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
                     <mat-form-field class="w-100">
-                        <mat-label>Choose tags</mat-label>
+                        <mat-label>Choose tag (choice multiple)</mat-label>
                         <mat-select multiple formControlName="tag">
                           <mat-option *ngFor="let tag of tags" value={{tag.name}}>{{tag.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
                     <input type="checkbox" formControlName="published" id="published" class="mb-2 mr-2">
-                    <label for="published">Published</label>
-
+                    <label for="published" style="opacity: 0.7;">Published</label>
                 </div>
-                <div class="dropzone" cdkDrag>
+                <div class="dropzone col-lg-3 col-md-11 col-sm-11">
                     <img src="assets/img/drag.png" alt="">
-                    <input type="file" #fileDropRef id="fileDropRef">
-                    <h3>Drag and drop file here</h3>
+                    <input type="file" id="fileDropRef" (change)="ConvertToBlob($event)">
+                    <h3>Drag and drop</h3>
+                    <h3>file here</h3>
                     <h3>or</h3>
                     <label for="fileDropRef">Browse for file</label>
+                    <h4 *ngIf="file" class="step-info">{{file.name}}</h4>
                 </div>
             </div>
-            <button mat-raised-button color="primary" (click)="submit($event)">Submit</button>
+            <button mat-raised-button color="primary" (click)="submit($event)" class="mt-3">Submit</button>
         </form>
     </div>
 </div>
