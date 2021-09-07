@@ -15,6 +15,6 @@ export class TemplateComponent implements OnInit {
   }
 
   fillFields(){
-    this.router.navigate(['fill-fields'],{queryParams:{template:this.template}})
+    this.router.navigate(['articles/fill-fields'],{queryParams:{template:this.template}})
   }
 }

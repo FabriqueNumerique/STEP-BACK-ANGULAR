@@ -97,7 +97,7 @@
                 <div class="col text-center">
                     <button mat-raised-button color="primary" 
                             matTooltip="nouvel article" 
-                            routerLink="/template">
+                            routerLink="/articles/template">
                         <mat-icon style="font-weight:bolder">add</mat-icon>
                     </button>
                 </div>
@@ -106,21 +106,40 @@
             
             <div class="row " >
                 <div class="articles" *ngFor="let article of articles ">
-                    <div class="row w-100">
-                        <div class="col-3 image" *ngIf="article.image">
+                    <div class="row article-row w-100">
+                        <div class="col-4 image" *ngIf="article.image">
                             <img src="https://step-s3.s3.amazonaws.com/{{article.image}}"  alt="">
                         </div>
-                        <div [ngClass]="{'col-7': article.image, 'col-10': !article.image}">
+                        <div [ngClass]="{'col-6': article.image, 'col-10': !article.image}">
                             <h3>{{article.title | slice:0:20 }}...</h3>
                             <h5>{{article.content | slice:0:100}}...</h5>
                         </div>
-                        <div class="col-2 action">
-                            <mat-icon class="text-success" matTooltip="modifier" (click)="displayArticle(article.id)">edit</mat-icon>
-                            <mat-icon color="primary" matTooltip="afficher" (click)="displayArticle(article.id)">visibility</mat-icon>
-                            <mat-icon color="accent" matTooltip="supprimer" (click)="deleteArticle(article.id,article.title,$event)">clear</mat-icon>
+                        <div class="action col-2">
+                            <mat-icon class="text-success mb-2" matTooltip="modifier" (click)="modifyArticle(article.id)">edit</mat-icon>
+                            <mat-icon color="primar" class=" mb-2" matTooltip="afficher" (click)="displayArticle(article.id)">visibility</mat-icon>
+                            <mat-icon color="accent" matTooltip="supprimer" (click)="deleteArticle(article.id,article.image,article.title,$event)">clear</mat-icon>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div *ngIf="displayAlert" class="{{msg.class}} msg row" [style.top]="top">
+            <div class="col-10">
+                <h3>{{msg.text}}</h3>
+            </div>
+            <div class="col-2">
+                <button *ngIf="deleteAlert" mat-button (click)="confirmDelete($event)">
+                    <mat-icon>done</mat-icon>
+                </button>
+                
+                <button mat-button (click)="closeAlert()">
+                    <mat-icon>close</mat-icon>
+                </button>
             </div>
         </div>
 
@@ -189,19 +208,6 @@
         </mat-accordion>
     </div>
     -->
-    <div *ngIf="displayAlert" class="{{msg.class}} msg row" [style.top]="top">
-        <div class="col-10">
-            <h3>{{msg.text}}</h3>
-        </div>
-        <div class="col-2">
-            <button *ngIf="deleteAlert" mat-button (click)="confirmDelete($event)">
-                <mat-icon>done</mat-icon>
-            </button>
-            
-            <button mat-button (click)="closeAlert()">
-                <mat-icon>close</mat-icon>
-            </button>
-        </div>
-    </div>
+    
 
   

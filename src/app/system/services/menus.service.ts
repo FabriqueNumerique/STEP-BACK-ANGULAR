@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 
 import { Route } from '@angular/compiler/src/core';
 import { environment } from 'src/environments/environment';
-import { ArticleComponent } from 'src/app/gabarits/article/article.component';
-import { CategoryComponent } from 'src/app/gabarits/category/category.component';
-import { TagComponent } from 'src/app/gabarits/tag/tag.component';
+import { ArticleComponent } from 'src/app/gabarits/articles/article/article.component';
+import { CategoryComponent } from 'src/app/gabarits/articles/category/category.component';
+import { TagComponent } from 'src/app/gabarits/articles/tag/tag.component';
 
 export interface route {
 	id: string,

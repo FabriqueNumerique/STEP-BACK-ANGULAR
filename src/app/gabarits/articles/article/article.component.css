@@ -74,12 +74,18 @@ mat-icon{
     align-items: flex-end;
 }
 
+.article-row{
+    display: flex;
+    align-items: center;
+}
+
 .image {
     display: flex;
 }
 
 .image img{
     width: 99%;
+    height: fit-content;
 }
 
 mat-divider{

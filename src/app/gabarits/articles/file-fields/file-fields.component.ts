@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { DataService } from 'src/app/system/services/data.service';
 import { v4 as uuid } from 'uuid';
 import { HttpClient } from '@angular/common/http';
@@ -37,7 +37,8 @@ export class FileFieldsComponent implements OnInit {
 		private route:ActivatedRoute,
 		private dataService:DataService,
 		private formBuilder:FormBuilder,
-		private http:HttpClient
+		private http:HttpClient,
+		private router:Router
 		) { }
 
 	ngOnInit(): void {
@@ -69,9 +70,7 @@ export class FileFieldsComponent implements OnInit {
 				this.blob = new Blob([new Uint8Array(arrayBuffer)], {type:  this.file.type });
 				this.extension = this.blob.type.split('/').pop()
 		  	})
-		}
-		
-		
+		}	
 	}
 	
 	submit(event:MouseEvent){	
@@ -89,15 +88,7 @@ export class FileFieldsComponent implements OnInit {
 			this.http.post(`${environment.url_component}/article/add-article`,
 			this.blob,{params})
 			.subscribe((res:any)=>{
-				console.log(res);
-				this.displayAlert = true
-				this.msg.text = res
-				this.msg.class = "step-green"
-				this.showAlert()
-				this.top = (event.clientY+20).toString()+"px"
-				this.initForm()
-				this.file=''
-				
+				this.router.navigate(['articles/article'],{queryParams:{text:'Un article a été ajouté!!!'}})
 			})
 		}
 		else {
