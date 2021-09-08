@@ -61,6 +61,8 @@
     width: 70%;
     position: absolute;
     left: 21%;
+   
+    
 }
 
 
@@ -75,13 +77,33 @@
     cursor: pointer;
 }
 
+.top-nav{
+    display: none;
+}
+
 @media (max-width:1000px) {
 	.side-left{
-        width: 25%;
+        display: none;
 	}
     .content{
-        width: 60%;
-        left: 26%;
+        width: 95%;
+        /* left: 26%; */
+        left: 0;
+        top: 30px;
+
+    }
+    .side-right{
+        width: 60px;
+    }
+    .side-right mat-icon{
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+
+    .top-nav{
+        display: block;
+        height: 50px;
+        background: #140a82;
     }
 
 } 

@@ -43,6 +43,7 @@ export class EditArticleComponent implements OnInit {
 	title:string=''
 	content:string=''
 	image:string = ''
+	isDeleteImage:boolean = false
 
   	constructor(
 		private route:ActivatedRoute,
@@ -140,16 +141,29 @@ export class EditArticleComponent implements OnInit {
 		this.displayAlert = false;
 	}
 
-	deleteImage(){
+	deleteImage(event:MouseEvent){
+		this.deleteAlert = true
+		this.isDeleteImage = true
+		this.msg.text = `Etes-vous sûrs de supprimer l'image?`
+		this.msg.class = "step-yellow"
+		this.showAlert()
+		this.top = (event.clientY).toString()+"px"
+	}
+
+	confirmDeleteImage(event:MouseEvent){
+		this.isDeleteImage = false
 		this.http.delete(`${environment.url_component}/article/delete-image`,{params:{id:this.id,image:this.article.image}})
-		.subscribe(res => {
+		.subscribe((res:any) => {
 			console.log(res);
+			this.msg.text = res
+			this.msg.class = "step-orange"
+			this.showAlert()
+			this.top = (event.clientY).toString()+"px"
 			this.findArticle()
-			
 		})
 	}
 
-	addImage(){
+	addImage(event:MouseEvent){
 		this.http.post(`${environment.url_component}/article/update-image`,this.blob,
 		{
 			params:{
@@ -158,15 +172,21 @@ export class EditArticleComponent implements OnInit {
 				oldImage:this.article.image
 			}
 		})
-		.subscribe(res =>{
+		.subscribe((res:any) =>{
 			console.log(res);
 			this.findArticle()
 			this.file = ''
+			this.deleteAlert = true
+			this.msg.text = res
+			this.msg.class = "step-green"
+			this.showAlert()
+			this.top = (event.clientY).toString()+"px"
 		})
 	}
 
 	displayArticle(){
-		this.router.navigate(["articles/single-article"],{queryParams:{id:this.article.id}})		
+		// this.router.navigate(["articles/single-article"],{queryParams:{id:this.article.id}})		
+		this.router.navigate([`templates/${this.article.template}`],{queryParams:{id:this.id}})
 	}
 
 }

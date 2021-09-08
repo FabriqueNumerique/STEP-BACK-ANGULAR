@@ -26,9 +26,9 @@ export class ModelComponent implements OnInit {
 	input_type:string=""
 	rows:number = 0
 	models :any = []
-	options = ['article','category','tag']
+	options = ['Geolocalisation map','Another example','Another']
 	id:string = ''
-	
+	button:string = ''
 
 	constructor(
 		private http:HttpClient, 
@@ -41,18 +41,27 @@ export class ModelComponent implements OnInit {
 	}
 
 	onSelect(){
-		let modelDispo:any = []
-		this.modelService.getModels()
-		this.modelService.models.map(model => {
-			modelDispo.push(model.title)
+		// let modelDispo:any = []
+		// this.modelService.getModels()
+		// this.modelService.models.map(model => {
+		// 	modelDispo.push(model.title)
+			
+		// })
+		// this.options = ['Geolocalisation map','Another example','Another']
+		// this.options = this.options.filter(e => !modelDispo.includes(e))
+		// this.menuService.getRoutes()
+		// this.modelService.getModels()
+		// this.models =  this.modelService.models
+		// console.log(this.models);
+		this.modelService.getModels().subscribe(res => {
+			this.models = res
+			console.log("models............ ",this.models);
+			const model  = this.models.find((model:any) => model.title === 'button')
+			this.button = model.html
+			console.log(model);
 			
 		})
-		this.options = ['article','category','tag']
-		this.options = this.options.filter(e => !modelDispo.includes(e))
-		this.menuService.getRoutes()
-		this.modelService.getModels()
-		this.models =  this.modelService.models
-		
+
 	}
 
   	generateInput(input_type:string,field_type:string){

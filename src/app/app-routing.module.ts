@@ -12,6 +12,7 @@ const routes: Routes = [
   {path:"user", component:UserComponent},
 
   {path: 'articles', loadChildren: () => import('./gabarits/articles/articles.module').then(m => m.ArticlesModule) },
+  { path: 'templates', loadChildren: () => import('./gabarits/templates/templates.module').then(m => m.TemplatesModule) },
   {path:"**", component:Erreur404Component},
 
 ];

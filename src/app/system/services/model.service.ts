@@ -18,9 +18,7 @@ export class ModelService {
 	 }
 
 	getModels(){
-		this.http.get(`${environment.url}/get-models`).subscribe((res:any)=>{
-			this.models = res
-		})
+		return this.http.get(`${environment.url}/get-models`)
 	}
 
 

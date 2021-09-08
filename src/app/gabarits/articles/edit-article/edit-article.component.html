@@ -44,8 +44,8 @@
                         <h4 *ngIf="file" class="step-info">{{file.name}}</h4>
                     </div>
                     <div class="d-flex justify-content-around mt-2">
-                        <button mat-icon-button class="step-green" [disabled]="!file" matTooltip="save" (click)="addImage()"> <mat-icon>check</mat-icon></button>
-                        <button mat-icon-button class="step-orange" [disabled]="!article.image" matTooltip="delete" (click)="deleteImage()">
+                        <button mat-icon-button class="step-green" [disabled]="!file" matTooltip="save" (click)="addImage($event)"> <mat-icon>check</mat-icon></button>
+                        <button mat-icon-button class="step-orange" [disabled]="!article.image" matTooltip="delete" (click)="deleteImage($event)">
                             <mat-icon>remove</mat-icon>
                         </button>
                         
@@ -59,6 +59,9 @@
 
 <div *ngIf="displayAlert" class="{{msg.class}} msg" [style.top]="top">
     <h3>{{msg.text}}</h3>
+    <button mat-button *ngIf="isDeleteImage" (click)="confirmDeleteImage($event)">
+        <mat-icon>check</mat-icon>
+    </button>
     <button mat-button  (click)="closeAlert()">
         <mat-icon>close</mat-icon>
     </button>

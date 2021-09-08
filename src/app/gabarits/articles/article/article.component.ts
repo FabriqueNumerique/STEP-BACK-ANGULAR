@@ -196,8 +196,12 @@ export class ArticleComponent implements OnInit {
 	// 	// this.form.reset();
 	// }
 
-	displayArticle(id:string){
-		this.router.navigate(["articles/single-article"],{queryParams:{id:id}})		
+	displayArticle(id:string,template:string){
+		console.log(template);
+		
+		this.router.navigate([`templates/${template}`],{queryParams:{id:id}})
+		//if we have path with id, we use this method
+		// this.router.navigate([`templates/${template}`,id])		
 	}
 
 	showAlert(){

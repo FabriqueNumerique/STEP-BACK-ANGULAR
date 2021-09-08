@@ -1,3 +1,5 @@
+<div style="margin:5%;">
+
 
 
 <!--<div *ngIf="fields" style="margin:5%;">
@@ -74,9 +76,9 @@
                     <h1>Liste des articles</h1>
                 </mat-panel-title>
             </mat-expansion-panel-header>-->
-        <div style="margin:5%;">
             <h1 class="mb-3">Articles</h1>
             <mat-divider class="w-75 mb-3"></mat-divider>
+        <div style="margin:5%;">
             <div class="row">
                 <div class="col">
                     <select 
@@ -116,7 +118,7 @@
                         </div>
                         <div class="action col-2">
                             <mat-icon class="text-success mb-2" matTooltip="modifier" (click)="modifyArticle(article.id)">edit</mat-icon>
-                            <mat-icon color="primar" class=" mb-2" matTooltip="afficher" (click)="displayArticle(article.id)">visibility</mat-icon>
+                            <mat-icon color="primar" class=" mb-2" matTooltip="afficher" (click)="displayArticle(article.id,article.template)">visibility</mat-icon>
                             <mat-icon color="accent" matTooltip="supprimer" (click)="deleteArticle(article.id,article.image,article.title,$event)">clear</mat-icon>
                         </div>
                     </div>
@@ -210,4 +212,4 @@
     -->
     
 
-  
+</div>

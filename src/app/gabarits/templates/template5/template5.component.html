@@ -1,7 +1,7 @@
 <div style="margin:5%;">
     <div  *ngIf="article" style="margin:5%;">
         <img *ngIf="article.image" src="https://step-s3.s3.amazonaws.com/{{article.image}}" alt="">
-        <h1 class="title">{{article.title}}</h1>
+        <h1 class="title">{{article.title | titlecase}}</h1>
         <h3 class="content">{{article.content}}</h3> 
     </div>
 </div>
