@@ -56,16 +56,35 @@ mat-icon{
     margin-right: 20px;
 }
 
-.articles{
+/* .articles{
     width: 45%;
     border: black 1px solid;
     margin: 10px;
     padding: 10px;
+} */
+
+.ar{
+    border: black 1px solid;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
 }
 
+
+ .articles{
+    width: 48%;
+    display: flex;
+    align-items: stretch;
+}
+
+.article100{
+    width: 96%;
+}
+/*
 .articles .row{
     display: flex;
-}
+} */
 
 .action{
     display: flex;
@@ -74,10 +93,10 @@ mat-icon{
     align-items: flex-end;
 }
 
-.article-row{
+/* .article-row{
     display: flex;
     align-items: center;
-}
+} */
 
 .image {
     display: flex;
@@ -94,6 +113,6 @@ mat-divider{
 
 @media (max-width:1000px) {
 	.articles{
-        width: 100%;
+        width: 96%;
 	}
 } 

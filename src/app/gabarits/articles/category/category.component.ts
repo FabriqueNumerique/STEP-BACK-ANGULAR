@@ -21,6 +21,7 @@ export class CategoryComponent implements OnInit {
 	isChecked : boolean = true
 
 	categories:any = []
+	category:string = ''
 
 	id:string = ""
 
@@ -47,19 +48,24 @@ export class CategoryComponent implements OnInit {
 	}
 
 	saveCategory(event:MouseEvent){
-		this.model.id = uuid()
 		this.deleteAlert = false
-		const category = this.categories.find((category:any) => category.name === this.model.name)
-		if (!category){
-			this.http.post(`${environment.url_component}/category/add-category`,this.model)
+		const item = {
+			id: uuid(),
+			name:this.category
+		}
+		const cat = this.categories.find((category:any) => category.name === this.category)
+		if (!cat){
+			this.http.post(`${environment.url_component}/category/add-category`,item)
 			.subscribe((res: any) => {
 				this.getCategory()
+				console.log(res);
+				
 				this.msg.text = res
 				this.msg.class = "step-green"
 				this.showAlert()
 				this.top = (event.clientY+20).toString()+"px"
 			})
-			this.form.reset();
+			this.category = ''
 		}
 		else {
 			this.msg.text = "Cette catégorie existe déjà !!!"

@@ -1,4 +1,7 @@
 <div style="margin:5%;">
+
+
+
     <h1 class="mb-3">Article (add)</h1>
     <mat-divider class="w-75 my-3"></mat-divider>
     <h2>2 - Fill the fields</h2>
@@ -10,13 +13,22 @@
                         <mat-label>Title</mat-label>
                         <input matInput placeholder="Title" formControlName="title" >
                     </mat-form-field>
-
+                    
                     <mat-form-field class="w-100">
                         <mat-label>Content</mat-label>
                         <textarea matInput formControlName="content" rows="5"></textarea>
                     </mat-form-field>
-
-                    <mat-form-field class="w-100">
+                    
+                    <!--
+                    <angular-editor 
+                        [(ngModel)]="content"
+                        [config]="config"
+                        formControlName="content" 
+                        [placeholder]="'Enter text here...'">
+                    </angular-editor>
+                    -->
+                    
+                    <mat-form-field class="w-100 mt-3">
                         <mat-label>Choose category (choice multiple)</mat-label>
                         <mat-select multiple formControlName="category">
                           <mat-option *ngFor="let category of categories" [value]="category.name">{{category.name}}</mat-option>

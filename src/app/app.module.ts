@@ -47,6 +47,8 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { TemplateComponent } from './gabarits/articles/template/template.component';
 import { FileFieldsComponent } from './gabarits/articles/file-fields/file-fields.component';
 import { EditArticleComponent } from './gabarits/articles/edit-article/edit-article.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { MediaComponent } from './admin/media/media.component';
 
 
 @NgModule({
@@ -67,6 +69,7 @@ import { EditArticleComponent } from './gabarits/articles/edit-article/edit-arti
     TemplateComponent,
     FileFieldsComponent,
     EditArticleComponent,
+    MediaComponent,
     
 
   ],
@@ -97,6 +100,7 @@ import { EditArticleComponent } from './gabarits/articles/edit-article/edit-arti
       domain: 'dev-m438qh2i.us.auth0.com',
       clientId: 'PxHnQFeh6V1I1hMuiyX0loFfcplCRE38'
     }),
+    AngularEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -38,14 +38,16 @@
 
 <div [class.mat-elevation-z5]="fields" class="elevation">
     <h1>Ajouter une étiquette</h1>
-    <form [formGroup]="form" >
-        <formly-form [model]="model" [fields]="fields" [form]="form" ></formly-form>
-        <button  mat-raised-button
+    <mat-form-field class="w-100" >
+        <mat-label>Nom de l'étiquette'</mat-label>
+        <input matInput placeholder="Saisir une étiquette..."  [(ngModel)]="tag">
+    </mat-form-field>
+    
+    <button  mat-raised-button
+        color="primary" 
+        style="margin-top:20px"
         (click)="saveTag($event)"
-            color="primary" 
-            style="margin-top:20px"
-            [disabled]="!form.valid">
-            Enregistrer
-        </button>
-    </form>
+        [disabled]="tag === ''">
+        Enregistrer
+    </button>
 </div>

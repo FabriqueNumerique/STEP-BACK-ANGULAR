@@ -22,7 +22,7 @@ export class TagComponent implements OnInit {
 	isChecked : boolean = true
 
 	tags:any = []
-
+	tag:string=''
 	id:string = ""
 
 	msg = {
@@ -48,12 +48,14 @@ export class TagComponent implements OnInit {
 	}
 
 	saveTag(event:MouseEvent){
-		console.log(event);
 		this.deleteAlert = false
-		this.model.id = uuid()
-		const tag = this.tags.find((tag:any) => tag.name === this.model.name)
+		const item = {
+			id: uuid(),
+			name:this.tag
+		}
+		const tag = this.tags.find((tag:any) => tag.name === this.tag)
 		if (!tag){
-			this.http.post(`${environment.url_component}/tag/add-tag`,this.model)
+			this.http.post(`${environment.url_component}/tag/add-tag`,item)
 			.subscribe((res: any) => {
 				this.getTag()
 				this.msg.text = res
@@ -61,7 +63,7 @@ export class TagComponent implements OnInit {
 				this.showAlert()
 				this.top = (event.clientY+20).toString()+"px"
 			})
-			this.form.reset();
+			this.tag=''
 		}
 		else {
 			this.msg.text = "Cette étiquette existe déjà !!!"

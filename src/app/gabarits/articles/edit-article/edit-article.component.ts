@@ -4,9 +4,9 @@ import { DataService } from 'src/app/system/services/data.service';
 
 import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
 
-import { v4 as uuid } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 
 @Component({
@@ -15,6 +15,39 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./edit-article.component.css']
 })
 export class EditArticleComponent implements OnInit {
+
+	config: AngularEditorConfig = {
+		editable: true,
+		spellcheck: true,
+		height: '15rem',
+		minHeight: '5rem',
+		placeholder: 'Enter text here...',
+		translate: 'no',
+		showToolbar: true,
+		enableToolbar: true,
+		defaultParagraphSeparator: 'p',
+		defaultFontName: 'Arial',
+		sanitize: true,
+		toolbarHiddenButtons: [
+			['bold', 'italic'],
+			['fontSize']
+		  ],
+		customClasses: [
+		  {
+			name: "quote",
+			class: "quote",
+		  },
+		  {
+			name: 'redText',
+			class: 'redText'
+		  },
+		  {
+			name: "titleText",
+			class: "titleText",
+			tag: "h1",
+		  },
+		]
+	  };
 
 	article:any={}
 	articles:any = []
@@ -50,7 +83,7 @@ export class EditArticleComponent implements OnInit {
 		private dataService:DataService,
 		private formBuilder:FormBuilder,
 		private http:HttpClient,
-		private router:Router
+		private router:Router,
 		) { }
 
 	ngOnInit(): void {   

@@ -37,15 +37,18 @@
 
 <div [class.mat-elevation-z5]="fields" class="elevation">
     <h1>Ajouter une catégorie</h1>
-    <form [formGroup]="form">
-        <formly-form [model]="model" [fields]="fields" [form]="form" ></formly-form>
-        <button  mat-raised-button
-            color="primary" 
-            style="margin-top:20px"
-            (click)="saveCategory($event)"
-            [disabled]="!form.valid">
-            Enregistrer
-        </button>
-    </form>
+    <mat-form-field class="w-100" >
+        <mat-label>Nom de la catégorie</mat-label>
+        <input matInput placeholder="Saisir une catégorie..."  [(ngModel)]="category">
+    </mat-form-field>
+    
+    <button  mat-raised-button
+        color="primary" 
+        style="margin-top:20px"
+        (click)="saveCategory($event)"
+        [disabled]="category === ''">
+        Enregistrer
+    </button>
+
 </div>
 

@@ -28,5 +28,7 @@ export class DataService {
 		return this.http.get(`${environment.url_component}/tag/get-tag`)
 	}
 
-
+  getMedia(){
+    return this.http.get(`${environment.url}/media/get-media`)
+  }
 }

@@ -77,10 +77,10 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>-->
             <h1 class="mb-3">Articles</h1>
-            <mat-divider class="w-75 mb-3"></mat-divider>
-        <div style="margin:5%;">
+            <mat-divider class="w-100 mb-3"></mat-divider>
+
             <div class="row">
-                <div class="col">
+                <div class="col-lg-5 col-md-5 mb-2">
                     <select 
                         class="form-select " 
                         [(ngModel)]="category">
@@ -88,7 +88,7 @@
                         <option *ngFor="let category of categories" value={{category.name}}>{{category.name}}</option>
                     </select>
                 </div>
-                <div class="col">
+                <div class="col-lg-5 col-md-5 mb-2">
                     <select 
                     class="form-select" 
                     [(ngModel)]="tag">
@@ -96,7 +96,7 @@
                     <option *ngFor="let tag of tags" value={{tag.name}}>{{tag.name}}</option>
                 </select>
                 </div>
-                <div class="col text-center">
+                <div class="col-lg-2 col-md-2 mb-2 text-right">
                     <button mat-raised-button color="primary" 
                             matTooltip="nouvel article" 
                             routerLink="/articles/template">
@@ -104,14 +104,15 @@
                     </button>
                 </div>
             </div>
-            <mat-divider class="w-75 my-3"></mat-divider>
+            <mat-divider class="w-100 my-3"></mat-divider>
             
             <div class="row " >
-                <div class="articles" *ngFor="let article of articles ">
-                    <div class="row article-row w-100">
+                <div class="articles" *ngFor="let article of articles; let i=index" [ngClass]="{'article100':articles.length % 2 != 0 && i===articles.length-1} ">
+                    <div class="row ar w-100" >
                         <div class="col-4 image" *ngIf="article.image">
                             <img src="https://step-s3.s3.amazonaws.com/{{article.image}}"  alt="">
                         </div>
+                        
                         <div [ngClass]="{'col-6': article.image, 'col-10': !article.image}">
                             <h3>{{article.title | slice:0:20 }}...</h3>
                             <h5>{{article.content | slice:0:100}}...</h5>
@@ -124,7 +125,6 @@
                     </div>
                 </div>
             </div>
-        </div>
 
 
 

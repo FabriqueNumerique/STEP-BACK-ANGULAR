@@ -55,6 +55,8 @@ export class ArticleComponent implements OnInit {
 	top = ""
 
 	text:string = ''
+	count:number=0
+
 	constructor(
 		public modelService:ModelService,
 		private http:HttpClient,
@@ -65,19 +67,20 @@ export class ArticleComponent implements OnInit {
 			this.getArticle()
 			this.dataService.getCategory().subscribe(res => this.categories = res)
 			this.dataService.getTag().subscribe(res => this.tags = res)
-			if (this.route.snapshot.queryParams.text){
-				console.log(this.text);
-				this.msg.text = 'Un article a été ajoué !!!'
-				this.msg.class = "step-green"
-				this.showAlert()
-				this.top = (window.innerHeight/2).toString()+"px"
-			}
+			
 			 
 			// this.getFields()
 		}
 
 		
 	ngOnInit(): void {
+		if (this.route.snapshot.queryParams.text){
+			console.log(this.text);
+			this.msg.text = 'Un article a été ajoué !!!'
+			this.msg.class = "step-green"
+			this.showAlert()
+			this.top = (window.innerHeight/2).toString()+"px"
+		}
 		// this.getFields()
 	}
 

@@ -5,7 +5,7 @@ import { DataService } from 'src/app/system/services/data.service';
 import { v4 as uuid } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-file-fields',
@@ -13,6 +13,37 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./file-fields.component.css']
 })
 export class FileFieldsComponent implements OnInit {
+
+	config: AngularEditorConfig = {
+		editable: true,
+		spellcheck: true,
+		height: '15rem',
+		minHeight: '5rem',
+		placeholder: 'Enter text here...',
+		translate: 'no',
+		defaultParagraphSeparator: 'p',
+		defaultFontName: 'Arial',
+		toolbarHiddenButtons: [
+		  ['bold']
+		  ],
+		customClasses: [
+		  {
+			name: "quote",
+			class: "quote",
+		  },
+		  {
+			name: 'redText',
+			class: 'redText'
+		  },
+		  {
+			name: "titleText",
+			class: "titleText",
+			tag: "h1",
+		  },
+		]
+	  };
+	
+
 
 	form:any = FormGroup
 	id:string = ''
@@ -32,6 +63,7 @@ export class FileFieldsComponent implements OnInit {
 	file:any
 	blob:any
 	extension:string=''
+	content:string=''
 
 	constructor(
 		private route:ActivatedRoute,

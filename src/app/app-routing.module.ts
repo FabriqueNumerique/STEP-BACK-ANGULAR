@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MediaComponent } from './admin/media/media.component';
 import { ModelComponent } from './admin/model/model.component';
 import { UserComponent } from './admin/user/user.component';
 import { AccueilComponent } from './gabarits/accueil/accueil.component';
@@ -10,7 +11,7 @@ const routes: Routes = [
   {path:"accueil", component:AccueilComponent},
   {path:"model", component:ModelComponent},
   {path:"user", component:UserComponent},
-
+  {path:"media", component:MediaComponent},
   {path: 'articles', loadChildren: () => import('./gabarits/articles/articles.module').then(m => m.ArticlesModule) },
   { path: 'templates', loadChildren: () => import('./gabarits/templates/templates.module').then(m => m.TemplatesModule) },
   {path:"**", component:Erreur404Component},

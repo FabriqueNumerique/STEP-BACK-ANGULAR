@@ -1,0 +1,13 @@
+<div style="margin:5%;">
+
+    <h1 class="mb-3">Gestion des média</h1>
+    <mat-divider class="w-75 my-3"></mat-divider>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3" *ngFor="let image of images">
+            <label for="{{image['Key']}}">
+                <img src="{{url}}/{{image['Key']}}" alt="" style="width: 100%;" >
+            </label>
+            <input type="checkbox" id="{{image['Key']}}" style="display:block; margin:auto" (click)="addImageToDelete(image['Key'])">
+        </div>
+    </div>
+</div>
