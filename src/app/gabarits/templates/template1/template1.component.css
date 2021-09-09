@@ -15,4 +15,17 @@ h1,h2{
 img{
     width: 100%;
     margin-top: 10px;
+    border-radius: 5px;
+}
+
+.tag{
+    display: flex;
+}
+
+.tag h3{
+    margin-right: 10px;
+    background: #00b0cc;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
 }

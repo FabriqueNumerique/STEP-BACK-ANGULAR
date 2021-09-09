@@ -1,5 +1,8 @@
 <div style="margin:5%;">
     <div  *ngIf="article" style="margin:5%;" class="row">
+        <div class="tag" >
+            <h3 *ngFor="let tag of article.tag">{{tag}}</h3>
+        </div>
         <div class="col-md-5 col-sm-12 mb-3">
             <img *ngIf="article.image" src="https://step-s3.s3.amazonaws.com/{{article.image}}" alt="">
             <div *ngIf="!article.image" style="width: 100%; height:200px; background:rgb(224, 222, 222)"></div>
